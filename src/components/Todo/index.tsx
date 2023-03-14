@@ -8,6 +8,8 @@ export default function Todo() {
   return (
     <ContainerTodo>
       <CardsTodo/>
+      <CardsTodo/>
+      <CardsTodo/>
     </ContainerTodo>
     
   )
