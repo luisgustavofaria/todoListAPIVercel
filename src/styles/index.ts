@@ -11,11 +11,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
 
-  a {
-    
+  p {
+    font-weight: 400;
   }
 
-  a:hover {
-   
+  strong {
+    font-weight: 700;
   }
+
+  
 `

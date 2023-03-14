@@ -10,7 +10,7 @@ interface TodoProps{
 export default function Todo( {type}:TodoProps ) {
     return (
       <div>
-        hello world
+        
       </div>
     )
   }
