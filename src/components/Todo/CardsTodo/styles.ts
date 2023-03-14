@@ -1,14 +1,28 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
+interface TodoProps{
+    type: string;
+}
+
+export const Card = styled.div<TodoProps>`
+    width: 100%;
     max-width: 390px;
-    height: 440px;
+    height: ${(props) => props.type === "existingtodoCard" ? "440px" : "100px"};
     background-color: #BAE2FF;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`
+
+export const CardHeaderDescription = styled.div`
+  
+   p{
+        padding: 14px 23px;
+        color: #4F4F4D;
+        font-size: 13px;
+    }
 `
 
 export const CardHeader = styled.header`
@@ -23,12 +37,6 @@ export const CardHeader = styled.header`
 export const Title = styled.strong`
     color: #4F4F4D;
     font-size: 14.2px;
-`
-
-export const Description = styled.p`
-    padding: 14px 23px;
-    color: #4F4F4D;
-    font-size: 13px;
 `
 
 export const Container = styled.div`

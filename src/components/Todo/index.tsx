@@ -1,17 +1,17 @@
 import CardsTodo from "./CardsTodo";
-import { ContainerTodo } from "./styles";
+import {  ContainerTodo } from "./styles";
 
 
 
 
-export default function Todo() {
+export default function Todo({}) {
   return (
     <ContainerTodo>
-      <CardsTodo/>
-      <CardsTodo/>
-      <CardsTodo/>
-    </ContainerTodo>
-    
+      <CardsTodo favorited={false} type={"newCard"}/>
+      <CardsTodo favorited={true} type={"existingtodoCard"}/>
+      <CardsTodo favorited={false} type={"existingtodoCard"}/>
+      <CardsTodo favorited={false} type={"existingtodoCard"}/>
+    </ContainerTodo>    
   )
 }
   
