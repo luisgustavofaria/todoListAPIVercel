@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
+  body, input, textarea, button {
     font-family: 'Inter', sans-serif;
     background-color: #F0F2F5;
   }

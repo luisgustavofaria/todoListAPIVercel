@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Card, CardHeader, Footer, Title, CardHeaderDescription } from "./styles";
+import { Card, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button } from "./styles";
 import favoriteCheked from "../../../../public/favoriteCheked.svg"
 import favoriteNoCheked from "../../../../public/favoriteNoCheked.svg"
 import colors from "../../../../public/colors.svg"
@@ -11,27 +11,38 @@ interface TodoProps{
     title?: string;
     description?: string;
     color?: string;
+    button?: boolean;
     favorited: boolean;
     type: "newCard"|"existingtodoCard";
+    
 }
 
-export default function CardsTodo( {type, favorited}:TodoProps) {
+export default function CardsTodo( {type, favorited, button}:TodoProps) {
     return(
         <Card type={type} >
             <CardHeaderDescription>
-                <CardHeader>
-                    <Title>Titulo</Title>
-                    { favorited === true &&
-                    <Image src={favoriteCheked} alt="" />
+                <div>
+                    <CardHeader>
+                        <Title placeholder="Titulo"/>
+                        { favorited === true &&
+                        <Image src={favoriteCheked} alt="" />
                     }
-                    { favorited === false &&
-                    <Image src={favoriteNoCheked} alt="" />
+                        { favorited === false &&
+                        <Image src={favoriteNoCheked} alt="" />
                     }
-                </CardHeader>
-                { type === 'existingtodoCard'?
-                <p>Clique ou arraste o a rquivo para esta área para fazer upload</p> :
-                <p>Criar nota...</p>        
-                }    
+                    </CardHeader>
+                    { type === 'existingtodoCard'?
+                    <form action="">
+                        <TextAreaPosted>Clique ou arraste o arquivo para esta área para fazer upload</TextAreaPosted>
+                    </form> :
+                    <form action="">
+                        <TextAreaNew>Criar nota...</TextAreaNew>        
+                    </form>
+                    }  
+                </div>
+                { button === true &&     
+                    <Button>Publicar</Button>     
+                }
             </CardHeaderDescription>
         
         { type === 'existingtodoCard' &&

@@ -13,6 +13,7 @@ export const ContainerInput = styled.div`
 `
 
 export const Input = styled.input`
+background-color: #FFFFFF;
     border: none;
     width: 100%;
     height: 100%;
@@ -21,6 +22,7 @@ export const Input = styled.input`
     
     ::placeholder {
         color: #9A9A9A;
+    
     }
 
     :focus-visible{
