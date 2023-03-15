@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
-interface TodoProps{
-    type: string;
-}
+export const ContainerTodo = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 53px;
+    margin: 25px;
+    
+`
 
-export const Card = styled.div<TodoProps>`
+export const CardComment = styled.div`
     width: 100%;
     max-width: 390px;
-    height: ${(props) => props.type === "existingtodoCard" ? "440px" : "auto"};
+    height: 440px;
     background-color: #FFFFFF;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
@@ -16,24 +21,33 @@ export const Card = styled.div<TodoProps>`
     justify-content: space-between;
 `
 
-export const CardHeaderDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+export const CardPost = styled(CardComment)`
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   
   :focus-within {
-    height: 440px;
-  }
-  
-  :focus-within textarea{
-    height: 340px;
-  }
-  
-  :focus-within button {
-        display: block;
+      height: 440px;
     }
+    
+    :focus-within textarea{
+        height: 340px;
+    }
+    
+    :focus-within footer {
+        display: flex;
+    }
+    
 `
-export const TextAreaPosted = styled.textarea`
+
+export const CardHeaderDescription = styled.div`
+  
+ 
+`
+
+    export const TextAreaPosted = styled.textarea`
     width: 100%;
     height: 340px;
     padding: 14px 23px;
@@ -63,21 +77,18 @@ export const TextAreaNew = styled.textarea`
 `
 
 export const Button = styled.button`
-width: 80px;
+    width: 80px;
     padding: 7px 10px;
     color: black;
     font-size: 13px;
-    margin: 0 0 10px 20px;
+   
     cursor: pointer;
     border: 0;
     border-radius: 8px;
     background-color: #A9A9A9;
-    display: none;
+    //display: none;
 
 `
-        
-
-
 
 export const CardHeader = styled.header`
     display: flex;
@@ -124,3 +135,15 @@ export const Footer = styled.footer`
             gap: 12px;
         }
 `
+
+export const FooterPost = styled.footer`
+    
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 23px;
+    display: none;
+        
+`
+
+
+
