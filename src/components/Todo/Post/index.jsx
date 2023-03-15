@@ -5,30 +5,55 @@ import { CardPost, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPos
 import favoriteNoCheked from "../../../../public/favoriteNoCheked.svg"
 import vectorX from "../../../../public/vectorX.svg"
 import Comment from "./Comment"
+import { useState } from "react";
 
 
 export default function Post( ){
+
+    const [newCommentText, setNewCommentText] = useState('');
+
+    const [comments, setComments] = useState([
+        'Primeiro Post'
+    ])
+
+    function handleCrateNewComment() {
+        event.preventDefault()
+        
+        setComments([...comments, newCommentText]);
+        setNewCommentText('');
+    
+    }
+
+    function handleNewCommentChange() {
+        setNewCommentText(event.target.value);
+      }    
+
+
     return(
         <ContainerTodo>
-            <CardPost >
-                <CardHeaderDescription>
-                        <div>
-                            <CardHeader>  
-                                <Title placeholder="Titulo"/>                                     
-                                <Image src={favoriteNoCheked} alt="" />               
-                            </CardHeader>
-                            <TextAreaNew>Criar nota...</TextAreaNew>                       
-                        </div>                                                                   
+            <CardPost onSubmit={handleCrateNewComment}>
+                    <div>
+                        <CardHeader>  
+                            <Title placeholder="Titulo"/>                                     
+                            <Image src={favoriteNoCheked} alt="" />               
+                        </CardHeader>
+                        <TextAreaNew
+                            name="comment"
+                            placeholder="Criar nota..."
+                            onChange={handleNewCommentChange}
+                            value={newCommentText}
+                        ></TextAreaNew>                       
+                    </div>                                                                   
                     <FooterPost>
                         <Button>Publicar</Button>     
                         <Image src={vectorX} alt="" /> 
-                    </FooterPost>
-                </CardHeaderDescription>           
+                    </FooterPost>         
             </CardPost>   
             
-            <Comment/>
-            <Comment/>
-            <Comment/>
+            {comments.map(comment => {
+                return <Comment key={0} content={comment}/>
+            })}
+            
         
         </ContainerTodo>
         

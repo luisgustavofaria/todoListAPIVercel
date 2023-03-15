@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState, } from "react";
 
 import { CardComment, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button } from "./styles";
 import favoriteCheked from "../../../../../public/favoriteCheked.svg"
@@ -9,14 +10,17 @@ import vectorX from "../../../../../public/vectorX.svg"
 
 
 
-export default function Comment( ) {
+export default function Comment( {content} ) {
+
+    
+
     return(
         <CardComment >                     
             <CardHeader>
                 <Title placeholder="Titulo"/>
                 <Image src={favoriteCheked} alt="" />                   
             </CardHeader>                  
-            <TextAreaPosted>Clique ou arraste o arquivo para esta área para fazer upload</TextAreaPosted>                      
+            <TextAreaPosted>{content}</TextAreaPosted>                      
                    
                         
             <Footer>

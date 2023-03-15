@@ -9,7 +9,7 @@ export const ContainerTodo = styled.div`
     
 `
 
-export const CardComment = styled.div`
+export const CardComment = styled.form`
     width: 100%;
     max-width: 390px;
     height: 440px;
@@ -40,11 +40,6 @@ export const CardPost = styled(CardComment)`
         display: flex;
     }
     
-`
-
-export const CardHeaderDescription = styled.div`
-  
- 
 `
 
     export const TextAreaPosted = styled.textarea`
