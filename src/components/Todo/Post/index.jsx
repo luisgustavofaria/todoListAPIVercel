@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { CardPost, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button, ContainerTodo, FooterPost } from "./Comment/styles";
+import { CardPost, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button, ContainerTodo, FooterPost } from "./CardsStyles/styles";
 
 import favoriteNoCheked from "../../../../public/favoriteNoCheked.svg"
 import vectorX from "../../../../public/vectorX.svg"

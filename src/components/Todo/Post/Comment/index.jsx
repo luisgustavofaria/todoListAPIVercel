@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState, } from "react";
 
-import { CardComment, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button } from "./styles";
+import { CardComment, CardHeader, Footer, Title, TextAreaPosted, TextAreaNew, Button } from "../CardsStyles/styles";
 import favoriteCheked from "../../../../../public/favoriteCheked.svg"
 import favoriteNoCheked from "../../../../../public/favoriteNoCheked.svg"
 import colors from "../../../../../public/colors.svg"
