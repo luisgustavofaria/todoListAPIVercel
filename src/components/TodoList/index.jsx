@@ -2,15 +2,15 @@ import Image from "next/image";
 import { useState, } from "react";
 
 import { CardComment, CardHeader, Footer, Title, TextAreaPosted, TextAreaNew, Button } from "../CardsStyles/styles";
-import favoriteCheked from "../../../../../public/favoriteCheked.svg"
-import favoriteNoCheked from "../../../../../public/favoriteNoCheked.svg"
-import colors from "../../../../../public/colors.svg"
-import edit from "../../../../../public/edit.svg"
-import vectorX from "../../../../../public/vectorX.svg"
+import favoriteCheked from "../../../public/favoriteCheked.svg"
+import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
+import colors from "../../../public/colors.svg"
+import edit from "../../../public/edit.svg"
+import vectorX from "../../../public/vectorX.svg"
 
 
 
-export default function Comment( {content} ) {
+export default function TodoList( {content} ) {
 
     
 

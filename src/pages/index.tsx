@@ -1,5 +1,5 @@
 import Header from "@/components/Header"
-import Todo from "@/components/Todo"
+import TodoForm from "@/components/TodoForm"
 
 
 
@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Header/>
-      <Todo/>
+      <TodoForm/>
     </div>
   )
 }

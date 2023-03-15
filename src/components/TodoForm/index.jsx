@@ -1,14 +1,14 @@
 import Image from "next/image";
 
-import { CardPost, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button, ContainerTodo, FooterPost } from "./CardsStyles/styles";
+import { CardPost, CardHeader, Footer, Title, CardHeaderDescription, TextAreaPosted, TextAreaNew, Button, ContainerTodo, FooterPost } from "../CardsStyles/styles";
 
-import favoriteNoCheked from "../../../../public/favoriteNoCheked.svg"
-import vectorX from "../../../../public/vectorX.svg"
-import Comment from "./Comment"
+import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
+import vectorX from "../../../public/vectorX.svg"
+import Comment from "../TodoList"
 import { useState } from "react";
 
 
-export default function Post( ){
+export default function TodoForm( ){
 
     const [newCommentText, setNewCommentText] = useState('');
 

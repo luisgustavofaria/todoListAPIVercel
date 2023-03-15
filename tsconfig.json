@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Todo/styles.js", "src/components/Todo/index.jsx", "src/components/Todo/Post/styles.js", "src/components/Todo/Post/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Todo/styles.js", "src/components/Todo/index.jsx", "src/components/Todo/Post/styles.js", "src/components/TodoForm/index.jsx"],
   "exclude": ["node_modules"]
 }
