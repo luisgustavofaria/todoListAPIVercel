@@ -24,6 +24,7 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked}
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
         onAddTodoList(titleNew, textAreaNew)
+        setTitleNew("")
         setTextAreaNew("")
     }
 
