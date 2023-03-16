@@ -92,6 +92,12 @@ export const CardHeader = styled.header`
     padding: 0 23px;
     height: 44px;
     border-bottom: 1px solid #FFFFFF;
+
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
 `
 
 export const Title = styled.input`

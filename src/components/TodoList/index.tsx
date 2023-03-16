@@ -12,17 +12,22 @@ import { ITodoList } from "../../pages/index";
 interface Props {
     todoList: ITodoList;   
     onDelete: (todoListId: string) => void 
+    onChecked: (todoListId: string) => void 
   }
 
-export default function TodoList( {todoList, onDelete}:Props  ){
-
-    
+export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
 
     return(
         <CardTodoList >                     
             <CardHeader>
                 <Title placeholder="Titulo"/>
-                <Image src={favoriteCheked} alt="" />                   
+                    <button 
+                        onClick={() => onChecked(todoList.id)}
+                    >
+                        {
+                        todoList.ischecked ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />
+                        }
+                    </button>
             </CardHeader>                  
             <TextAreaTodoList>{todoList.textAreaTodoList}</TextAreaTodoList>                      
                    

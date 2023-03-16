@@ -6,19 +6,12 @@ import { useState } from "react"
 export interface ITodoList {
   id: string;
   textAreaTodoList: string;
-  checked: boolean;
-  
+  ischecked: boolean;
 }
 
 export default function Home() {
 
-  const [todoForm, setTodoForm] = useState<ITodoList[]>([
-    {
-      id: "teste",
-      textAreaTodoList: "teste",
-      checked: true,
-    }
-  ])
+  const [todoForm, setTodoForm] = useState<ITodoList[]>([])
 
   function addTodoList(todoListTextAreaPosted: string){
     setTodoForm([
@@ -26,7 +19,7 @@ export default function Home() {
       {
         id: crypto.randomUUID(),
         textAreaTodoList: todoListTextAreaPosted,
-        checked: true,
+        ischecked: true,
       }
     ])
   }
@@ -35,11 +28,30 @@ export default function Home() {
     const newTodoForm = todoForm.filter((todoList) => todoList.id !== todoListId)
     setTodoForm(newTodoForm)
   }
-TodoForm
+
+  function toggleTodoListCompletedById(todoListId: string) {
+    const newTodoForm = todoForm.map((todoList) => {
+      if (todoList.id === todoListId) {
+        return {
+          ...todoList,
+          ischecked: !todoList.ischecked,
+        }
+      }
+      return todoList;
+    })
+    setTodoForm(newTodoForm)
+  }
+
   return (
     <div>
       <Header/>
-      <TodoForm todoForm={todoForm} onAddTodoList={addTodoList} onDelete={deleteTodoListById}/>      
+      <TodoForm 
+        todoForm={todoForm} 
+        onAddTodoList={addTodoList} 
+        onDelete={deleteTodoListById} 
+        onChecked={toggleTodoListCompletedById}  
+        
+        /> 
     </div>
   )
 }

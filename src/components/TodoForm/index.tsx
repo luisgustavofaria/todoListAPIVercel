@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { CardTodoForm, CardHeader, Title, TextAreaNew, Button, ContainerTodo, FooterTodoForm } from "../CardsStyles/styles";
 import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
+import favoriteCheked from "../../../public/favoriteCheked.svg"
 import vectorX from "../../../public/vectorX.svg"
 import Comment from "../TodoList"
 import TodoList from "../TodoList";
@@ -12,9 +13,10 @@ interface Props {
     todoForm: ITodoList[];
     onDelete: (todoListId: string) => void;
     onAddTodoList: (textAreaNew: string) => void;
+    onChecked: (textAreaNew: string) => void;
   }
 
-export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
+export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked}:Props){
 
     const [textAreaNew, setTextAreaNew] = useState("")
 
@@ -33,8 +35,10 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
             <CardTodoForm onSubmit={handleSubmit}>
                     <div>
                         <CardHeader>  
-                            <Title placeholder="Titulo"/>                                     
-                            <Image src={favoriteNoCheked} alt="" />               
+                            <Title placeholder="Titulo"/>  
+                            <button>
+                                <Image src={favoriteNoCheked} alt="" />               
+                            </button>                                   
                         </CardHeader>
                         <TextAreaNew
                             name="todoList"
@@ -50,7 +54,12 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
             </CardTodoForm>   
             
             {todoForm.map((todoList => (
-                <TodoList key={todoList.id} todoList={todoList} onDelete={onDelete}/>
+                <TodoList 
+                    key={todoList.id} 
+                    todoList={todoList} 
+                    onDelete={onDelete}
+                    onChecked={onChecked}
+                    />
             )))}
             
         
