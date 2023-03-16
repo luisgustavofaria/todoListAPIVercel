@@ -12,18 +12,24 @@ import { ITodoList } from "../../pages/index";
 interface Props {
     todoForm: ITodoList[];
     onDelete: (todoListId: string) => void;
-    onAddTodoList: (textAreaNew: string) => void;
-    onChecked: (textAreaNew: string) => void;
+    onAddTodoList: (textTitle: string, textAreaNew:string) => void;
+    onChecked: (texrTitle: any, textAreaNew: any) => void;
   }
 
 export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked}:Props){
 
+    const [textTitle, setTexttextTitle] = useState("")
     const [textAreaNew, setTextAreaNew] = useState("")
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
-        onAddTodoList(textAreaNew)
+        onAddTodoList({textTitle, textAreaNew})
+        setTexttextTitle("")
         setTextAreaNew("")
+    }
+
+    function onChangeTextTitle(event: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) {
+        setTexttextTitle(event.target.value)
     }
 
     function onChangeTextAreaNew(event: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) {
@@ -35,7 +41,10 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked}
             <CardTodoForm onSubmit={handleSubmit}>
                     <div>
                         <CardHeader>  
-                            <Title placeholder="Titulo"/>  
+                            <Title placeholder="Titulo"
+                            onChange={onChangeTextTitle}
+                            value={textTitle}
+                            />  
                             <button>
                                 <Image src={favoriteNoCheked} alt="" />               
                             </button>                                   
