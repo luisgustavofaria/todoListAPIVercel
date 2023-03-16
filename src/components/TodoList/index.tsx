@@ -20,7 +20,7 @@ export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
     return(
         <CardTodoList >                     
             <CardHeader>
-                <Title placeholder="Titulo"/>
+                <Title/>
                     <button 
                         onClick={() => onChecked(todoList.id)}
                     >
