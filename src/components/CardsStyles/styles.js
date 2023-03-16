@@ -9,7 +9,7 @@ export const ContainerTodo = styled.div`
     
 `
 
-export const CardComment = styled.form`
+export const CardTodoList = styled.form`
     width: 100%;
     max-width: 390px;
     height: 440px;
@@ -21,7 +21,7 @@ export const CardComment = styled.form`
     justify-content: space-between;
 `
 
-export const CardPost = styled(CardComment)`
+export const CardTodoForm = styled(CardTodoList)`
     height: 100px;
 
     display: flex;
@@ -42,7 +42,7 @@ export const CardPost = styled(CardComment)`
     
 `
 
-    export const TextAreaPosted = styled.textarea`
+    export const TextAreaTodoList = styled.textarea`
     width: 100%;
     height: 340px;
     padding: 14px 23px;
@@ -120,7 +120,7 @@ export const Container = styled.div`
     align-content: space-between;
 `
 
-export const Footer = styled.footer`
+export const FooterTodoList = styled.footer`
     display: flex;
     justify-content: space-between;
     padding: 14px 23px;
@@ -139,7 +139,7 @@ export const Footer = styled.footer`
         }
 `
 
-export const FooterPost = styled.footer`
+export const FooterTodoForm = styled.footer`
     
     justify-content: space-between;
     align-items: center;

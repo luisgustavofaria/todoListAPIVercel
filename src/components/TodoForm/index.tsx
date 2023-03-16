@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { CardPost, CardHeader, Footer, Title, TextAreaPosted, TextAreaNew, Button, ContainerTodo, FooterPost } from "../CardsStyles/styles";
+import { CardTodoForm, CardHeader, Title, TextAreaNew, Button, ContainerTodo, FooterTodoForm } from "../CardsStyles/styles";
 import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
 import vectorX from "../../../public/vectorX.svg"
 import Comment from "../TodoList"
@@ -30,7 +30,7 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
     
     return(
         <ContainerTodo>
-            <CardPost onSubmit={handleSubmit}>
+            <CardTodoForm onSubmit={handleSubmit}>
                     <div>
                         <CardHeader>  
                             <Title placeholder="Titulo"/>                                     
@@ -43,11 +43,11 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
                             value={textAreaNew}
                         ></TextAreaNew>                       
                     </div>                                                                   
-                    <FooterPost>
+                    <FooterTodoForm>
                         <Button>Publicar</Button>     
                         <Image src={vectorX} alt="" /> 
-                    </FooterPost>         
-            </CardPost>   
+                    </FooterTodoForm>         
+            </CardTodoForm>   
             
             {todoForm.map((todoList => (
                 <TodoList key={todoList.id} todoList={todoList} onDelete={onDelete}/>

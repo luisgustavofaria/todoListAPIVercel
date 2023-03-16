@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState, } from "react";
 
-import { CardComment, CardHeader, Footer, Title, TextAreaPosted, TextAreaNew, Button } from "../CardsStyles/styles";
+import { CardTodoList, CardHeader, FooterTodoList, Title, TextAreaTodoList, TextAreaNew, Button } from "../CardsStyles/styles";
 import favoriteCheked from "../../../public/favoriteCheked.svg"
 import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
 import colors from "../../../public/colors.svg"
@@ -19,15 +19,15 @@ export default function TodoList( {todoList, onDelete}:Props  ){
     
 
     return(
-        <CardComment >                     
+        <CardTodoList >                     
             <CardHeader>
                 <Title placeholder="Titulo"/>
                 <Image src={favoriteCheked} alt="" />                   
             </CardHeader>                  
-            <TextAreaPosted>{todoList.textAreaPosted}</TextAreaPosted>                      
+            <TextAreaTodoList>{todoList.textAreaTodoList}</TextAreaTodoList>                      
                    
                         
-            <Footer>
+            <FooterTodoList>
                 <div> 
                     <button>
                         <Image src={edit} alt="" />
@@ -39,8 +39,8 @@ export default function TodoList( {todoList, onDelete}:Props  ){
                 <button onClick={() => onDelete(todoList.id)}>
                     <Image src={vectorX} alt="" />
                 </button>
-            </Footer>
+            </FooterTodoList>
         
-        </CardComment>   
+        </CardTodoList>   
     )
 }

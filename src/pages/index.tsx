@@ -5,7 +5,7 @@ import { useState } from "react"
 
 export interface ITodoList {
   id: string;
-  textAreaPosted: string;
+  textAreaTodoList: string;
   checked: boolean;
   
 }
@@ -15,7 +15,7 @@ export default function Home() {
   const [todoForm, setTodoForm] = useState<ITodoList[]>([
     {
       id: "teste",
-      textAreaPosted: "teste",
+      textAreaTodoList: "teste",
       checked: true,
     }
   ])
@@ -25,7 +25,7 @@ export default function Home() {
       ...todoForm,
       {
         id: crypto.randomUUID(),
-        textAreaPosted: todoListTextAreaPosted,
+        textAreaTodoList: todoListTextAreaPosted,
         checked: true,
       }
     ])
