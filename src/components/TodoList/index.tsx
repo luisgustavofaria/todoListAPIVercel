@@ -20,7 +20,7 @@ export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
     return(
         <CardTodoList >                     
             <CardHeader>
-                <Title>{todoList.titleTodoList}</Title>
+                <Title placeholder="Titulo"/>
                     <button 
                         onClick={() => onChecked(todoList.id)}
                     >
@@ -29,7 +29,7 @@ export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
                         }
                     </button>
             </CardHeader>                  
-            <TextAreaTodoList>{todoList.textAreaTodoList}</TextAreaTodoList>                      
+            <TextAreaTodoList value={todoList.textAreaTodoList}/>                      
                    
                         
             <FooterTodoList>

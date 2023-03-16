@@ -5,7 +5,6 @@ import { useState } from "react"
 
 export interface ITodoList {
   id: string;
-  titleTodoList: string;
   textAreaTodoList: string;
   ischecked: boolean;
 }
@@ -14,13 +13,12 @@ export default function Home() {
 
   const [todoForm, setTodoForm] = useState<ITodoList[]>([])
 
-  function addTodoList({titleNew, textAreaNew}){
+  function addTodoList(todoListTextAreaPosted: string){
     setTodoForm([
       ...todoForm,
       {
         id: crypto.randomUUID(),
-        titleTodoList: titleNew,
-        textAreaTodoList: textAreaNew,
+        textAreaTodoList: todoListTextAreaPosted,
         ischecked: true,
       }
     ])
