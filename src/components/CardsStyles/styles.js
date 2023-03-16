@@ -124,10 +124,18 @@ export const Footer = styled.footer`
     display: flex;
     justify-content: space-between;
     padding: 14px 23px;
-    
-        div:nth-child(1){
+
+        div{
             display: flex;
+            align-items: center;
             gap: 12px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            background-color: transparent;
         }
 `
 

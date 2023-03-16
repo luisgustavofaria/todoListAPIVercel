@@ -7,10 +7,14 @@ import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
 import colors from "../../../public/colors.svg"
 import edit from "../../../public/edit.svg"
 import vectorX from "../../../public/vectorX.svg"
+import { ITodoList } from "../../pages/index";
 
+interface Props {
+    todoList: ITodoList;   
+    onDelete: (todoListId: string) => void 
+  }
 
-
-export default function TodoList( {content} ) {
+export default function TodoList( {todoList, onDelete}:Props  ){
 
     
 
@@ -20,17 +24,21 @@ export default function TodoList( {content} ) {
                 <Title placeholder="Titulo"/>
                 <Image src={favoriteCheked} alt="" />                   
             </CardHeader>                  
-            <TextAreaPosted>{content}</TextAreaPosted>                      
+            <TextAreaPosted>{todoList.textAreaPosted}</TextAreaPosted>                      
                    
                         
             <Footer>
-                <div>
-                    <Image src={edit} alt="" />
-                    <Image src={colors} alt="" />
-                </div>
-                <div>
+                <div> 
+                    <button>
+                        <Image src={edit} alt="" />
+                    </button>
+                    <button>
+                        <Image src={colors} alt="" />
+                    </button>
+                    </div>
+                <button onClick={() => onDelete(todoList.id)}>
                     <Image src={vectorX} alt="" />
-                </div>
+                </button>
             </Footer>
         
         </CardComment>   
