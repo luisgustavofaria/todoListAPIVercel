@@ -7,8 +7,8 @@ export interface ITodoList {
   id: string;
   titleTodoList: string;
   textAreaTodoList: string;
-  imageChekedList: string
-  //ischecked: boolean;
+  imageChekedList: string | boolean
+  
 }
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
         titleTodoList: titleNew,
         textAreaTodoList: textAreaNew,
         imageChekedList: imageCheked,
-        //ischecked: true,
+        
       }
     ])
   }
@@ -34,20 +34,20 @@ export default function Home() {
   }
 
 
-/*
+
 function toggleTodoListCheckedId(todoListId: string) {
   const newTodoForm = todoForm.map((todoList) => {
       if (todoList.id === todoListId) {
         return {
           ...todoList,
-          ischecked: !todoList.ischecked,
+          imageChekedList: !todoList.imageChekedList,
         }
       }
       return todoList;
     })
     setTodoForm(newTodoForm)
   }
-*/
+
   
   return (
     <div>
@@ -56,7 +56,7 @@ function toggleTodoListCheckedId(todoListId: string) {
         todoForm={todoForm} 
         onAddTodoList={addTodoList} 
         onDelete={deleteTodoListById} 
-        //onChecked={toggleTodoListCheckedId}  
+        onChecked={toggleTodoListCheckedId}  
         /> 
     </div>
   )

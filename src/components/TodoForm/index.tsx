@@ -13,10 +13,10 @@ interface Props {
     todoForm: ITodoList[];
     onDelete: (todoListId: string) => void;
     onAddTodoList: (titleNew: string,textAreaNew: string, imageCheked: string) => void;
-    //onChecked: (textAreaNew: string) => void;
+    onChecked: (textAreaNew: string) => void;
   }
 
-export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
+export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked}:Props){
 
     const [titleNew, setTitleNew] = useState("")
     const [textAreaNew, setTextAreaNew] = useState("")
@@ -73,7 +73,7 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete}:Props){
                     key={todoList.id} 
                     todoList={todoList} 
                     onDelete={onDelete}
-                    //onChecked={onChecked}
+                    onChecked={onChecked}
                     />
             )))}
             
