@@ -17,17 +17,19 @@ interface Props {
 
 export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
 
+    
+
     return(
         <CardTodoList >                     
             <CardHeader>
                 <Title value={todoList.titleTodoList}/>
-                    <button 
+                    <div 
                         onClick={() => onChecked(todoList.id)}
                     >
                         {
                         todoList.ischecked ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />
                         }
-                    </button>
+                    </div>
             </CardHeader>                  
             <TextAreaTodoList value={todoList.textAreaTodoList}/>                      
                    

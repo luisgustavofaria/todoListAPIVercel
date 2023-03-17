@@ -14,13 +14,14 @@ export default function Home() {
 
   const [todoForm, setTodoForm] = useState<ITodoList[]>([])
 
-  function addTodoList(todoListTitle:string, todoListTextArea: string) {
+  function addTodoList(titleNew:string, textAreaNew: string) {
     setTodoForm([
       ...todoForm,
       {
         id: crypto.randomUUID(),
-        titleTodoList: todoListTitle,
-        textAreaTodoList: todoListTextArea,
+        titleTodoList: titleNew,
+        textAreaTodoList: textAreaNew,
+        //imageChekedList: imageCheked
         ischecked: true,
       }
     ])
@@ -31,7 +32,10 @@ export default function Home() {
     setTodoForm(newTodoForm)
   }
 
-  function toggleTodoListCompletedById(todoListId: string) {
+
+/*
+*/
+  function toggleTodoListCheckedId(todoListId: string) {
     const newTodoForm = todoForm.map((todoList) => {
       if (todoList.id === todoListId) {
         return {
@@ -51,8 +55,7 @@ export default function Home() {
         todoForm={todoForm} 
         onAddTodoList={addTodoList} 
         onDelete={deleteTodoListById} 
-        onChecked={toggleTodoListCompletedById}  
-        
+        onChecked={toggleTodoListCheckedId}  
         /> 
     </div>
   )

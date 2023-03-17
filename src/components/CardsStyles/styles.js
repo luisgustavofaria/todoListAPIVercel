@@ -93,6 +93,10 @@ export const CardHeader = styled.header`
     height: 44px;
     border-bottom: 1px solid #FFFFFF;
 
+    div{
+        cursor: pointer;
+    }
+
     button{
         border: none;
         background-color: transparent;

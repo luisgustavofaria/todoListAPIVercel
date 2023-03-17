@@ -7,9 +7,9 @@ export default function Search(  ) {
     return (
       <ContainerInput>
         <Input type="text" placeholder="Pesquisar Notas" />
-        <Button>
-          <Image src={search} alt="vectorX" />
-        </Button>
+        
+        <Image src={search} alt="vectorX" />
+        
       </ContainerInput>
     )
   }
