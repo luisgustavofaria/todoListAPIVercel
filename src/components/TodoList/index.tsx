@@ -13,24 +13,24 @@ interface Props {
     todoList: ITodoList;   
     onDelete: (todoListId: string) => void 
     onChecked: (todoListId: string) => void 
+    onEdit: (todoListId: string) => void 
   }
 
-export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
+export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props  ){
 
+    function handleSubmit(event: React.SyntheticEvent<EventTarget>){
+        event.preventDefault()
+        
+    }
     
-    //onClick={() => onChecked(todoList.id)}
-    //{todoList.ischecked ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />}
-    //src={todoList.imageChekedList} 
     return(
-        <CardTodoList >                     
+        <CardTodoList onSubmit={handleSubmit}>                     
             <CardHeader>
                 <Title 
                     value={todoList.titleTodoList}
                     />
-                <div 
-                
+                <div           
                 onClick={() => onChecked(todoList.id)}
-                 
                 >
                 {todoList.imageChekedList ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />}
                 </div>
@@ -39,7 +39,7 @@ export default function TodoList( {todoList, onDelete, onChecked}:Props  ){
                        
             <FooterTodoList>
                 <div> 
-                    <button>
+                    <button onClick={() => onEdit(todoList.id)}>
                         <Image src={edit} alt="" />
                     </button>
                     <button>

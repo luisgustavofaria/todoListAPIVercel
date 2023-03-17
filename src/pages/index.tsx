@@ -33,6 +33,21 @@ export default function Home() {
     setTodoForm(newTodoForm)
   }
 
+    function editTodoListById(todoListId: string){
+      const newTodoForm = todoForm.map((todoList) => {
+        if (todoList.id === todoListId) {
+          return {
+            ...todoList,
+            titleTodoList: todoList.titleTodoList,
+            textAreaTodoList: todoList.textAreaTodoList,
+          }
+        }
+        return todoList;
+      })
+      setTodoForm(newTodoForm)
+          
+    }
+
 
 
 function toggleTodoListCheckedId(todoListId: string) {
@@ -57,6 +72,7 @@ function toggleTodoListCheckedId(todoListId: string) {
         onAddTodoList={addTodoList} 
         onDelete={deleteTodoListById} 
         onChecked={toggleTodoListCheckedId}  
+        onEdit={editTodoListById}  
         /> 
     </div>
   )
