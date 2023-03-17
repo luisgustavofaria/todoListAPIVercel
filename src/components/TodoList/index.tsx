@@ -13,21 +13,36 @@ interface Props {
     todoList: ITodoList;   
     onDelete: (todoListId: string) => void 
     onChecked: (todoListId: string) => void 
-    onEdit: (todoListId: string) => void 
+    onEdit: (todoListId: string, title: string, textarea: string) => void 
   }
 
 export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props  ){
 
+    const [disable, setDisable] = useState(true)
+    const [title, setTitle] = useState(todoList.titleTodoList)
+    const [textArea, setTextArea] = useState(todoList.textAreaTodoList)
+
+
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
         
+    }
+    function editlist() {
+        if(disable) {
+            setDisable(!disable)
+            return
+        }
+        onEdit(todoList.id, title, textArea)
+        setDisable(!disable)
     }
     
     return(
         <CardTodoList onSubmit={handleSubmit}>                     
             <CardHeader>
                 <Title 
-                    value={todoList.titleTodoList}
+                    disabled={disable}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     />
                 <div           
                 onClick={() => onChecked(todoList.id)}
@@ -35,11 +50,15 @@ export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props 
                 {todoList.imageChekedList ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />}
                 </div>
             </CardHeader>                  
-            <TextAreaTodoList value={todoList.textAreaTodoList}/>
+            <TextAreaTodoList 
+            onChange={(e) => setTextArea(e.target.value)}
+            disabled={disable}
+            value={textArea}
+            />
                        
             <FooterTodoList>
                 <div> 
-                    <button onClick={() => onEdit(todoList.id)}>
+                    <button onClick={editlist}>
                         <Image src={edit} alt="" />
                     </button>
                     <button>

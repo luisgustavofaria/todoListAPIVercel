@@ -11,13 +11,13 @@ import { ITodoList } from "../../pages/index";
 
 interface Props {
     todoForm: ITodoList[];
-    onDelete: (todoListId: string) => void;
+    //onDelete: (todoListId: string) => void;
     onAddTodoList: (titleNew: string,textAreaNew: string, imageCheked: string) => void;
-    onChecked: (textAreaNew: string) => void;
-    onEdit: (textAreaNew: string) => void;
+    // onChecked: (textAreaNew: string) => void;
+    // onEdit: (todoListId: string, title: string, textarea: string) => void;
   }
 
-export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked, onEdit}:Props){
+export default function TodoForm( {todoForm, onAddTodoList }:Props){
 
     const [titleNew, setTitleNew] = useState("")
     const [textAreaNew, setTextAreaNew] = useState("")
@@ -43,7 +43,7 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked,
     }   
     
     return(
-        <ContainerTodo>
+        
             <CardTodoForm onSubmit={handleSubmit}>
                     <div>
                         <CardHeader>  
@@ -69,7 +69,7 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked,
                     </FooterTodoForm>         
             </CardTodoForm>   
             
-            {todoForm.map((todoList => (
+            /* {todoForm.map((todoList => (
                 <TodoList 
                     key={todoList.id} 
                     todoList={todoList} 
@@ -77,10 +77,10 @@ export default function TodoForm( {todoForm, onAddTodoList, onDelete, onChecked,
                     onChecked={onChecked}
                     onEdit={onEdit}
                     />
-            )))}
+            )))} */
             
         
-        </ContainerTodo>
+       
         
     )
 }
