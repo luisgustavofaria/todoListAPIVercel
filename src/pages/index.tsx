@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useAtomValue } from "jotai";
 
 import { ContainerTodo } from "@/components/CardsStyles/styles";
@@ -37,11 +37,6 @@ console.log(todoForm);
     setTodoForm(newTodoForm)
   }
 
-  // useEffect(() => {
-  //   console.log(todoForm);
-    
-  // }, [todoForm])
-
   function editTodoListById(todoListId: string, title: string, textarea: string){
     const todoListToEdit = todoForm.find(el => el.id === todoListId);
 
@@ -72,26 +67,37 @@ function toggleFavorited(id: string) {
 
   const searchValue = useAtomValue(searchAtom).toLocaleLowerCase();
 
-  const filterTodos = todoForm.filter(
-    (task) =>
+  // const filterTodos = todoForm.filter(
+  //   (task) =>
     
-      `${task.titleTodoList?.toLocaleLowerCase()}${task.textAreaTodoList?.toLocaleLowerCase()}`.includes(
-        searchValue
-      )  && !task.isFavorited 
-  )
+  //     `${task.titleTodoList?.toLocaleLowerCase()}${task.textAreaTodoList?.toLocaleLowerCase()}`.includes(
+  //       searchValue
+  //     )  && !task.isFavorited 
+  // )
   
-  const favoritedList = todoForm.filter(task => task.isFavorited)
+  // const favoritedList = todoForm.filter(task => task.isFavorited)
+  // const list = [ ...favoritedList,  ...filterTodos]
   
-  const list = [ ...favoritedList,  ...filterTodos]
+  const list = useMemo(() => {
+    const filterTodos = todoForm.filter(
+      (task) =>
+        `${task.titleTodoList?.toLocaleLowerCase()}${task.textAreaTodoList?.toLocaleLowerCase()}`.includes(
+          searchValue
+        )  || !task.isFavorited && task.isFavorited
+    )
   
+    const favoritedList = todoForm.filter(task => task.isFavorited)
+    
+    return [ ...filterTodos, ...favoritedList]
+  }, [todoForm, searchValue])
+
+
   return (
     <div>
       <Header/>
       <ContainerTodo>
-      <TodoForm 
-        
-        onAddTodoList={addTodoList} 
-        
+      <TodoForm    
+        onAddTodoList={addTodoList}    
         /> 
         {list.map((task => (
           <TodoList
