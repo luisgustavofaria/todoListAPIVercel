@@ -66,17 +66,6 @@ function toggleFavorited(id: string) {
   }
 
   const searchValue = useAtomValue(searchAtom).toLocaleLowerCase();
-
-  // const filterTodos = todoForm.filter(
-  //   (task) =>
-    
-  //     `${task.titleTodoList?.toLocaleLowerCase()}${task.textAreaTodoList?.toLocaleLowerCase()}`.includes(
-  //       searchValue
-  //     )  && !task.isFavorited 
-  // )
-  
-  // const favoritedList = todoForm.filter(task => task.isFavorited)
-  // const list = [ ...favoritedList,  ...filterTodos]
   
   const list = useMemo(() => {
     const filterTodos = todoForm.filter(
@@ -85,12 +74,16 @@ function toggleFavorited(id: string) {
           searchValue
         )  || !task.isFavorited && task.isFavorited
     )
-  
-    const favoritedList = todoForm.filter(task => task.isFavorited)
-    
-    return [ ...filterTodos, ...favoritedList]
+
+    const filterReorganize = filterTodos.sort((a, b) =>
+        Number(a.isFavorited > b.isFavorited) === 1 ? -1 : 0
+      )
+
+    return filterReorganize;
+
   }, [todoForm, searchValue])
 
+  
 
   return (
     <div>
