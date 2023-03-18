@@ -23,7 +23,9 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
     const [disable, setDisable] = useState(true)
     const [title, setTitle] = useState(task.titleTodoList)
     const [textArea, setTextArea] = useState(task.textAreaTodoList)
-    
+    const [backGroundColor, setbackGroundColor] = useState("#FFFFFF")
+    const [hiddenDiv, setHiddenDiv] = useState(false)
+
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
@@ -37,9 +39,13 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
         onEdit(task.id, title, textArea)
         setDisable(!disable)
     }
+
+    function editColor(){
+
+    }
     
     return(
-        <CardTodoList onSubmit={handleSubmit}>                     
+        <CardTodoList onSubmit={handleSubmit} colorBack={backGroundColor}>                     
             <CardHeader>
                 <Title 
                     disabled={disable}
@@ -64,33 +70,34 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
                         <Image src={edit} alt="" />
                     </button>
                     <button>
-                        <Image src={colors} alt="" />
+                        <Image src={colors} alt="" onClick={() => setHiddenDiv(!hiddenDiv)}/>
                     </button>
                     </div>
                 <button onClick={() => onDelete(task.id)}>
                     <Image src={vectorX} alt="" />
                 </button>
             </FooterTodoList>
-            <Colors>
+            {hiddenDiv && 
+            <Colors >
                 <ContainerCircle>
-                    <Circle style={{background:"#BAE2FF"}}/>
-                    <Circle style={{background:"#B9FFDD"}}/>
-                    <Circle style={{background:"#FFE8AC"}}/>
-                    <Circle style={{background:"#FFCAB9"}}/>
-                    <Circle style={{background:"#F99494"}}/>
-                    <Circle style={{background:"#9DD6FF"}}/>
+                    <Circle onClick={() => setbackGroundColor("#BAE2FF")} style={{background:"#BAE2FF"}}/>
+                    <Circle onClick={() => setbackGroundColor("#B9FFDD")} style={{background:"#B9FFDD"}}/>
+                    <Circle onClick={() => setbackGroundColor("#FFE8AC")} style={{background:"#FFE8AC"}}/>
+                    <Circle onClick={() => setbackGroundColor("#FFCAB9")} style={{background:"#FFCAB9"}}/>
+                    <Circle onClick={() => setbackGroundColor("#F99494")} style={{background:"#F99494"}}/>
+                    <Circle onClick={() => setbackGroundColor("#9DD6FF")} style={{background:"#9DD6FF"}}/>
                 </ContainerCircle>
                 <ContainerCircle>
-                    <Circle style={{background:"#ECA1FF"}}/>
-                    <Circle style={{background:"#DAFF8B"}}/>
-                    <Circle style={{background:"#FFA285"}}/>
-                    <Circle style={{background:"#CDCDCD"}}/>
-                    <Circle style={{background:"#979797"}}/>
-                    <Circle style={{background:"#A99A7C"}}/>
+                    <Circle onClick={() => setbackGroundColor("#ECA1FF")} style={{background:"#ECA1FF"}}/>
+                    <Circle onClick={() => setbackGroundColor("#DAFF8B")} style={{background:"#DAFF8B"}}/>
+                    <Circle onClick={() => setbackGroundColor("#FFA285")}style={{background:"#FFA285"}}/>
+                    <Circle onClick={() => setbackGroundColor("#CDCDCD")} style={{background:"#CDCDCD"}}/>
+                    <Circle onClick={() => setbackGroundColor("#979797")} style={{background:"#979797"}}/>
+                    <Circle onClick={() => setbackGroundColor("#A99A7C")} style={{background:"#A99A7C"}}/>
                 </ContainerCircle>
                 
             </Colors>
-        
+            }
         </CardTodoList>   
     )
 }

@@ -6,14 +6,16 @@ export const ContainerTodo = styled.div`
     align-items: center;
     gap: 53px;
     margin: 25px;
+
     
 `
 
-export const CardTodoList = styled.form`
+export const CardTodoList = styled.form<{colorBack:string}>`
+
     width: 100%;
     max-width: 390px;
     height: 440px;
-    background-color: #FFFFFF;
+    background-color:${({colorBack}) => colorBack};
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     display: flex;
@@ -24,7 +26,7 @@ export const CardTodoList = styled.form`
 
 export const CardTodoForm = styled(CardTodoList)`
     height: 100px;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
