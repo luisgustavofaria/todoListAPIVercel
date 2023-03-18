@@ -10,21 +10,24 @@ import TodoList from "../TodoList";
 import { ITodoList } from "../../pages/index";
 
 interface Props {
-    todoForm: ITodoList[];
-    onAddTodoList: (titleNew: string,textAreaNew: string, imageCheked: string) => void;   
+    onAddTodoList: (titleNew: string,textAreaNew: string, isFavorited: boolean) => void;   
   }
 
-export default function TodoForm( {todoForm, onAddTodoList }:Props){
+export default function TodoForm( {onAddTodoList }:Props){
 
     const [titleNew, setTitleNew] = useState("")
     const [textAreaNew, setTextAreaNew] = useState("")
-    const [imageCheked, setImageCheked] = useState<string>(favoriteNoCheked)
+    const [isFavorited, setisFavorited] = useState(false)
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
-        onAddTodoList(titleNew, textAreaNew, imageCheked)
+        onAddTodoList(titleNew, textAreaNew, isFavorited)
         setTitleNew("")
         setTextAreaNew("")
+        console.log(titleNew);
+        console.log(textAreaNew);
+        console.log(isFavorited);
+        
     }
 
     function onChangeTitleNew(event: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) {
@@ -35,8 +38,8 @@ export default function TodoForm( {todoForm, onAddTodoList }:Props){
         setTextAreaNew(event.target.value)
     }
 
-    const onChancecheked = () => {
-        setImageCheked((state) => state === favoriteNoCheked ? favoriteCheked : favoriteNoCheked)
+    const onChangeChecked = () => {
+        setisFavorited((oldState) => !oldState)
     }   
     
     return(
@@ -49,8 +52,8 @@ export default function TodoForm( {todoForm, onAddTodoList }:Props){
                             value={titleNew}
                             placeholder="Titulo"
                             />  
-                            <div  onClick={onChancecheked}>
-                                <Image src={imageCheked}  alt="" />
+                            <div  onClick={onChangeChecked}>
+                                <Image src={isFavorited ? favoriteCheked : favoriteNoCheked}  alt="" />
                             </div>                                   
                         </CardHeader>
                         <TextAreaNew

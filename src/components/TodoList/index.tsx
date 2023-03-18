@@ -10,17 +10,17 @@ import vectorX from "../../../public/vectorX.svg"
 import { ITodoList } from "../../pages/index";
 
 interface Props {
-    todoList: ITodoList;   
+    task: ITodoList;   
     onDelete: (todoListId: string) => void 
     onChecked: (todoListId: string) => void 
     onEdit: (todoListId: string, title: string, textarea: string) => void 
   }
 
-export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props  ){
+export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
 
     const [disable, setDisable] = useState(true)
-    const [title, setTitle] = useState(todoList.titleTodoList)
-    const [textArea, setTextArea] = useState(todoList.textAreaTodoList)
+    const [title, setTitle] = useState(task.titleTodoList)
+    const [textArea, setTextArea] = useState(task.textAreaTodoList)
 
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
@@ -32,7 +32,7 @@ export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props 
             setDisable(!disable)
             return
         }
-        onEdit(todoList.id, title, textArea)
+        onEdit(task.id, title, textArea)
         setDisable(!disable)
     }
     
@@ -45,9 +45,9 @@ export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props 
                     onChange={(e) => setTitle(e.target.value)}
                     />
                 <div           
-                onClick={() => onChecked(todoList.id)}
+                onClick={() => onChecked(task.id)}
                 >
-                {todoList.imageChekedList ? <Image src={favoriteCheked} alt="" /> : <Image src={favoriteNoCheked} alt="" />}
+                <Image src={task.isFavorited ? favoriteCheked : favoriteNoCheked} alt="" />
                 </div>
             </CardHeader>                  
             <TextAreaTodoList 
@@ -65,7 +65,7 @@ export default function TodoList( {todoList, onDelete, onChecked, onEdit}:Props 
                         <Image src={colors} alt="" />
                     </button>
                     </div>
-                <button onClick={() => onDelete(todoList.id)}>
+                <button onClick={() => onDelete(task.id)}>
                     <Image src={vectorX} alt="" />
                 </button>
             </FooterTodoList>
