@@ -12,13 +12,14 @@ export const ContainerTodo = styled.div`
 export const CardTodoList = styled.form`
     width: 100%;
     max-width: 390px;
-    height: 150px;
+    height: 440px;
     background-color: #FFFFFF;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 `
 
 export const CardTodoForm = styled(CardTodoList)`

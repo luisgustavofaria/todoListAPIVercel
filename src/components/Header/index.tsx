@@ -12,11 +12,11 @@ export default function Header(  ) {
     return (
       <ContainerHeader>
         <Container>
-          <Image src={image8} alt="image8" />
+          <Image src={image8} alt="" />
           <p>CoreNotes</p>
         <Search/> 
         </Container>
-        <Image src={vectorX} alt="vectorX" onClick={() => setSearchValue("")} />
+        <Image src={vectorX} alt="" style={{cursor:"pointer"}} onClick={() => setSearchValue("")} />
       </ContainerHeader>
     )
   }

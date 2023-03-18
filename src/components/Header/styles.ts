@@ -10,6 +10,8 @@ export const ContainerHeader = styled.div`
     box-shadow: 0px 1px 7px;
     gap: 15px;
 
+    
+
     p {
         color: #455A64;
         font-size: 11.45px;

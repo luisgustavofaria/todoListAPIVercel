@@ -20,7 +20,7 @@ export default function Search() {
           value={searchValue}     
           onChange={(event) => setSearchValue(event.target.value)}
           />
-          <Image src={search} alt="vectorX" />
+        <Image src={search} alt="" />
           
         
       </ContainerInput>

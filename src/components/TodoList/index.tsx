@@ -8,6 +8,8 @@ import colors from "../../../public/colors.svg"
 import edit from "../../../public/edit.svg"
 import vectorX from "../../../public/vectorX.svg"
 import { ITodoList } from "../../pages/index";
+import {Circle, ContainerCircle, Colors} from "./Colors/styled";
+
 
 interface Props {
     task: ITodoList;   
@@ -21,7 +23,7 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
     const [disable, setDisable] = useState(true)
     const [title, setTitle] = useState(task.titleTodoList)
     const [textArea, setTextArea] = useState(task.textAreaTodoList)
-
+    
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
@@ -69,6 +71,25 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
                     <Image src={vectorX} alt="" />
                 </button>
             </FooterTodoList>
+            <Colors>
+                <ContainerCircle>
+                    <Circle style={{background:"#BAE2FF"}}/>
+                    <Circle style={{background:"#B9FFDD"}}/>
+                    <Circle style={{background:"#FFE8AC"}}/>
+                    <Circle style={{background:"#FFCAB9"}}/>
+                    <Circle style={{background:"#F99494"}}/>
+                    <Circle style={{background:"#9DD6FF"}}/>
+                </ContainerCircle>
+                <ContainerCircle>
+                    <Circle style={{background:"#ECA1FF"}}/>
+                    <Circle style={{background:"#DAFF8B"}}/>
+                    <Circle style={{background:"#FFA285"}}/>
+                    <Circle style={{background:"#CDCDCD"}}/>
+                    <Circle style={{background:"#979797"}}/>
+                    <Circle style={{background:"#A99A7C"}}/>
+                </ContainerCircle>
+                
+            </Colors>
         
         </CardTodoList>   
     )

@@ -10,6 +10,7 @@ export const ContainerInput = styled.div`
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     flex-grow: 1;
+    
 `
 
 export const Input = styled.input`
@@ -19,6 +20,7 @@ background-color: #FFFFFF;
     height: 100%;
     padding-left: 9px;
     
+   
     
     ::placeholder {
         color: #9A9A9A;

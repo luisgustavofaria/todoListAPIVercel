@@ -11,8 +11,6 @@ const theme = {
   ellipse10: '#CDCDCD',
   ellipse11: '#979797',
   ellipse12: '#A99A7C',
-  rectangle80: '#F0F2F5',
-  coresnote: '#455A64',
 }
 
 export default theme
