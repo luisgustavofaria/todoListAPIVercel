@@ -11,10 +11,7 @@ import { ITodoList } from "../../pages/index";
 
 interface Props {
     todoForm: ITodoList[];
-    //onDelete: (todoListId: string) => void;
-    onAddTodoList: (titleNew: string,textAreaNew: string, imageCheked: string) => void;
-    // onChecked: (textAreaNew: string) => void;
-    // onEdit: (todoListId: string, title: string, textarea: string) => void;
+    onAddTodoList: (titleNew: string,textAreaNew: string, imageCheked: string) => void;   
   }
 
 export default function TodoForm( {todoForm, onAddTodoList }:Props){
@@ -68,19 +65,5 @@ export default function TodoForm( {todoForm, onAddTodoList }:Props){
                         <Image src={vectorX} alt="" /> 
                     </FooterTodoForm>         
             </CardTodoForm>   
-            
-            /* {todoForm.map((todoList => (
-                <TodoList 
-                    key={todoList.id} 
-                    todoList={todoList} 
-                    onDelete={onDelete}
-                    onChecked={onChecked}
-                    onEdit={onEdit}
-                    />
-            )))} */
-            
-        
-       
-        
     )
 }

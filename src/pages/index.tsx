@@ -1,16 +1,16 @@
+import { useEffect, useState } from "react"
+
 import { ContainerTodo } from "@/components/CardsStyles/styles";
 import Header from "@/components/Header"
 import TodoForm from "@/components/TodoForm"
 import TodoList from "@/components/TodoList";
 
-import { useEffect, useState } from "react"
 
 export interface ITodoList {
   id: string;
   titleTodoList: string;
   textAreaTodoList: string;
   imageChekedList: string | boolean
-  
 }
 
 export default function Home() {
@@ -49,7 +49,6 @@ export default function Home() {
         titleTodoList: title,
         textAreaTodoList: textarea,
       }
-
       const newTodoList = todoForm.map(el => el.id === todoListId ? todoListEdited : el)
       setTodoForm(newTodoList);
     }
@@ -74,21 +73,21 @@ function toggleTodoListCheckedId(todoListId: string) {
     <div>
       <Header/>
       <ContainerTodo>
-
       <TodoForm 
         todoForm={todoForm} 
         onAddTodoList={addTodoList} 
         
         /> 
         {todoForm.map((todoList => (
-                <TodoList
-                    key={todoList.id} 
-                    todoList={todoList} 
-                    onDelete={deleteTodoListById} 
-                    onChecked={toggleTodoListCheckedId}  
-                    onEdit={editTodoListById} 
-                    />
-            )))}
+          <TodoList
+            key={todoList.id} 
+            todoList={todoList} 
+            onDelete={deleteTodoListById} 
+            onChecked={toggleTodoListCheckedId}  
+            onEdit={editTodoListById} 
+          />
+          )))
+        }
         </ContainerTodo>
     </div>
   )
