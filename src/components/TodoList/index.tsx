@@ -39,10 +39,6 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
         onEdit(task.id, title, textArea)
         setDisable(!disable)
     }
-
-    function editColor(){
-
-    }
     
     return(
         <CardTodoList onSubmit={handleSubmit} colorBack={backGroundColor}>                     
