@@ -17,7 +17,7 @@ export const Colors = styled.div`
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 9px;
     background-color: #ffffff;
-    z-index: 1;
+   
 `
 export const ContainerCircle = styled.div`
     display: flex;

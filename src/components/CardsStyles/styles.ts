@@ -146,14 +146,21 @@ export const FooterTodoList = styled.footer`
         div{
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
+            height: 30px;
         }
 
         button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border: none;
             cursor: pointer;
-            padding: 5px;
+            padding: 0px;
             background-color: transparent;
+            width: 30px;
+            height: 33px;
         }
 `
 
@@ -163,6 +170,8 @@ export const FooterTodoForm = styled.footer`
     align-items: center;
     padding: 14px 23px;
     display: none;
+    box-sizing: border-box;
+
         
 `
 

@@ -5,6 +5,8 @@ import { CardTodoList, CardHeader, FooterTodoList, Title, TextAreaTodoList, Text
 import favoriteCheked from "../../../public/favoriteCheked.svg"
 import favoriteNoCheked from "../../../public/favoriteNoCheked.svg"
 import colors from "../../../public/colors.svg"
+import colorsSave from "../../../public/colorsSave.svg"
+import editSave from "../../../public/editSave.svg"
 import edit from "../../../public/edit.svg"
 import vectorX from "../../../public/vectorX.svg"
 import { ITodoList } from "../../pages/index";
@@ -39,6 +41,10 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
         onEdit(task.id, title, textArea)
         setDisable(!disable)
     }
+
+    function editColor(){
+
+    }
     
     return(
         <CardTodoList onSubmit={handleSubmit} colorBack={backGroundColor}>                     
@@ -63,10 +69,10 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
             <FooterTodoList>
                 <div> 
                     <button onClick={editlist}>
-                        <Image src={edit} alt="" />
+                        <Image src={disable ? edit : editSave} alt="" />
                     </button>
                     <button>
-                        <Image src={colors} alt="" onClick={() => setHiddenDiv(!hiddenDiv)}/>
+                        <Image src={hiddenDiv ? colorsSave : colors} alt="" onClick={() => setHiddenDiv(!hiddenDiv)}/>
                     </button>
                     </div>
                 <button onClick={() => onDelete(task.id)}>
