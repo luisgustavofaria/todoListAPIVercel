@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useAtomValue } from "jotai";
 
-import { ContainerTodo } from "@/components/CardsStyles/styles";
+import { ContainerList, ContainerTodo } from "@/components/CardsStyles/styles";
 import Header from "@/components/Header"
 import TodoForm from "@/components/TodoForm"
 import TodoList from "@/components/TodoList";
@@ -119,21 +119,23 @@ async function addTodoList(
     <div>
       <Header/>
       <ContainerTodo>
-      <TodoForm    
-        onAddTodoList={addTodoList}    
-        /> 
-        {list.map((task => (
-          <TodoList
-            key={task.id} 
-            task={task} 
-            onDelete={deleteTodoListById} 
-            onChecked={toggleFavorited}  
-            onEdit={editTodoListById} 
-          />
-          )))
-        }
+        <TodoForm onAddTodoList={addTodoList}   /> 
+        <ContainerList>
+          
+          {list.map((task => (
+
+            <TodoList
+              key={task.id} 
+              task={task} 
+              onDelete={deleteTodoListById} 
+              onChecked={toggleFavorited}  
+              onEdit={editTodoListById} 
+              />
+            )))
+          }
+        </ContainerList>
         
-        </ContainerTodo>
+      </ContainerTodo>
     </div>
   )
 }

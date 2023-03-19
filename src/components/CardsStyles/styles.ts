@@ -4,10 +4,20 @@ export const ContainerTodo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px;
+    gap: 50px;
     margin: 25px;
 
     
+`
+
+export const ContainerList = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin: 25px;
 `
 
 export const CardTodoList = styled.form<{colorBack:string}>`
