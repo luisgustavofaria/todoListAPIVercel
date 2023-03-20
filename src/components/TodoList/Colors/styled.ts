@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Colors = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   position: absolute;
   bottom: -85px;
@@ -9,7 +10,6 @@ export const Colors = styled.div`
   width: 290px;
   height: 100px;
   padding: 5px 10px;
-  display: flex;
   flex-direction: column;
   gap: 10px;
   border: 1px solid #d9d9d9;
@@ -24,10 +24,6 @@ export const Colors = styled.div`
     flex-direction: row;
     bottom: -35px;
   }
-`;
-export const ContainerCircle = styled.div`
-  display: flex;
-  gap: 10px;
 `;
 
 export const Circle = styled.button`
