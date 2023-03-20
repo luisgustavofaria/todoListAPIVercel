@@ -17,17 +17,19 @@ interface Props {
     task: ITodoList;   
     onDelete: (todoListId: string) => void 
     onChecked: (todoListId: string) => void 
-    onEdit: (todoListId: string, title: string, textarea: string) => void 
+    onEdit: (todoListId: string, title: string, textarea: string, color:string) => void 
+    onColorEdit: (todoListId: string, color:string) => void 
   }
 
-export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
+export default function TodoList( {task, onDelete, onChecked, onEdit, onColorEdit}:Props  ){
 
     const [disable, setDisable] = useState(true)
     const [title, setTitle] = useState(task.titleTodoList)
     const [textArea, setTextArea] = useState(task.textAreaTodoList)
-    const [backGroundColor, setbackGroundColor] = useState("#FFFFFF")
+    const [backGroundColor, setbackGroundColor] = useState(task.color)
     const [hiddenDiv, setHiddenDiv] = useState(false)
-
+    
+    
 
     function handleSubmit(event: React.SyntheticEvent<EventTarget>){
         event.preventDefault()
@@ -38,7 +40,7 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
             setDisable(!disable)
             return
         }
-        onEdit(task.id, title, textArea)
+        onEdit(task.id, title, textArea, backGroundColor)
         setDisable(!disable)
     }
     
@@ -78,7 +80,12 @@ export default function TodoList( {task, onDelete, onChecked, onEdit}:Props  ){
             {hiddenDiv && 
             <Colors >
                 <ContainerCircle>
-                    <Circle onClick={() => setbackGroundColor("#BAE2FF")} style={{background:"#BAE2FF"}}/>
+                    <Circle onClick={() => {
+                        setbackGroundColor("#BAE2FF")
+                        onColorEdit(task.id,"#BAE2FF") 
+                    }}    
+                    
+                    />
                     <Circle onClick={() => setbackGroundColor("#B9FFDD")} style={{background:"#B9FFDD"}}/>
                     <Circle onClick={() => setbackGroundColor("#FFE8AC")} style={{background:"#FFE8AC"}}/>
                     <Circle onClick={() => setbackGroundColor("#FFCAB9")} style={{background:"#FFCAB9"}}/>

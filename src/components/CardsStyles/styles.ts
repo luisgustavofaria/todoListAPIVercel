@@ -4,21 +4,65 @@ export const ContainerTodo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     margin: 25px;
 
     
 `
-
 export const ContainerList = styled.div`
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    
+    
+`
+
+export const ContainerFavoriteOrNo = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 70px;
+    gap: 10px;
     margin: 25px;
+    position: relative;
+
+    p{
+        font-size: 12px;
+        margin-right: 50%;
+    }
+    
+
 `
+
+export const Task = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    
+
+    @media (min-width: 1000px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 35px;
+    }
+
+`
+
+
+
+
+
+
+
+
+
 
 export const CardTodoList = styled.form<{colorBack:string}>`
 

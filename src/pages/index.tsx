@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useAtomValue } from "jotai";
 
-import { ContainerList, ContainerTodo } from "@/components/CardsStyles/styles";
+import { ContainerFavoriteOrNo, ContainerList, ContainerTodo, Task } from "@/components/CardsStyles/styles";
 import Header from "@/components/Header"
 import TodoForm from "@/components/TodoForm"
 import TodoList from "@/components/TodoList";
@@ -14,6 +14,7 @@ export interface ITodoList {
   titleTodoList: string;
   textAreaTodoList: string;
   isFavorited: boolean
+  color: string
 }
 
 export default function Home() {
@@ -40,7 +41,8 @@ async function addTodoList(
     id: crypto.randomUUID(),
     titleTodoList: titleNew,
     textAreaTodoList: textAreaNew,
-    isFavorited
+    isFavorited,
+    color: "#FFFFFF"
   };
 
   setTodoForm((oldState) => [...oldState, data]);
@@ -57,6 +59,13 @@ async function addTodoList(
       params:{todo_id: todoListId}
     });
   }
+
+  async function editColorById(todoListId: string, color: string){    
+    await axios.patch(`http://localhost:3333/todo/color?id=${todoListId}`, {color});
+    
+  }
+
+  
 
   async function editTodoListById(todoListId: string, title: string, textarea: string){
     
@@ -121,18 +130,43 @@ async function addTodoList(
       <ContainerTodo>
         <TodoForm onAddTodoList={addTodoList}   /> 
         <ContainerList>
-          
-          {list.map((task => (
+          <ContainerFavoriteOrNo>
+            <p>Favoritas</p>
+            <Task>
+              {list.filter((item) => {
+                return item.isFavorited
+              }).map((task => (
+                <TodoList
+                key={task.id} 
+                task={task} 
+                onDelete={deleteTodoListById} 
+                onChecked={toggleFavorited}  
+                onEdit={editTodoListById} 
+                onColorEdit={editColorById}
+                />
+                )))
+              }
+              </Task>
+          </ContainerFavoriteOrNo>
+          <ContainerFavoriteOrNo>
+            <p>Outras</p>
+            <Task>
+            {list.filter((item) => {
+                return !(item.isFavorited)
+              }).map((task => (
+                <TodoList
+                key={task.id} 
+                task={task} 
+                onDelete={deleteTodoListById} 
+                onChecked={toggleFavorited}  
+                onEdit={editTodoListById} 
+                onColorEdit={editColorById}
+                />
+                )))
+              }
+            </Task>
+          </ContainerFavoriteOrNo>
 
-            <TodoList
-              key={task.id} 
-              task={task} 
-              onDelete={deleteTodoListById} 
-              onChecked={toggleFavorited}  
-              onEdit={editTodoListById} 
-              />
-            )))
-          }
         </ContainerList>
         
       </ContainerTodo>
