@@ -19,10 +19,12 @@ export const Colors = styled.div`
   z-index: 1;
 
   @media (min-width: 1000px) {
-    width: 575px;
+    width: 515px;
     height: 46px;
     flex-direction: row;
+    left: -60px;
     bottom: -35px;
+    gap: 5px;
   }
 `;
 
@@ -32,4 +34,5 @@ export const Circle = styled.button`
   width: 36px;
   height: 36px;
   cursor: pointer;
+  border: none;
 `;

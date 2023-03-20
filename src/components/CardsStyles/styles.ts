@@ -59,7 +59,7 @@ export const CardTodoList = styled.form<{ colorBack: string }>`
   position: relative;
 `;
 
-export const CardTodoForm = styled.form<{ hiddenText: string }>`
+export const CardTodoForm = styled.form`
   width: 100%;
   max-width: 390px;
   height: 100px;
@@ -70,16 +70,9 @@ export const CardTodoForm = styled.form<{ hiddenText: string }>`
   flex-direction: column;
   justify-content: space-between;
 
-  :focus-within {
-    height: ${({ hiddenText }) => hiddenText};
-  }
-
-  :focus-within textarea {
-    height: 340px;
-  }
-
-  :focus-within footer {
-    display: flex;
+  @media (min-width: 1000px) {
+    max-width: 550px;
+    border-radius: 0px;
   }
 `;
 
@@ -97,7 +90,7 @@ export const TextAreaTodoList = styled.textarea`
     outline: none;
   }
 `;
-export const TextAreaNew = styled.textarea`
+export const TextAreaNew = styled.input`
   width: 100%;
   height: 50px;
   padding: 14px 23px;

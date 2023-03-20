@@ -4,7 +4,8 @@ export const ContainerInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 314.1px;
+  max-width: 500px;
+  margin-right: 100px;
   height: 28px;
   border: 1px solid #d9d9d9;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);

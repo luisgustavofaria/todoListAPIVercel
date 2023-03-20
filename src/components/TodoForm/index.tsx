@@ -11,7 +11,6 @@ import {
 } from '../CardsStyles/styles';
 import favoriteNoCheked from '../../../public/favoriteNoCheked.svg';
 import favoriteCheked from '../../../public/favoriteCheked.svg';
-import vectorX from '../../../public/vectorX.svg';
 
 interface Props {
   onAddTodoList: (
@@ -25,7 +24,6 @@ export default function TodoForm({ onAddTodoList }: Props) {
   const [titleNew, setTitleNew] = useState('');
   const [textAreaNew, setTextAreaNew] = useState('');
   const [isFavorited, setisFavorited] = useState(false);
-  const [hiddenText, setHiddenText] = useState(false);
 
   function handleSubmit(event: React.SyntheticEvent<EventTarget>) {
     event.preventDefault();
@@ -55,10 +53,7 @@ export default function TodoForm({ onAddTodoList }: Props) {
   };
 
   return (
-    <CardTodoForm
-      onSubmit={handleSubmit}
-      hiddenText={hiddenText ? '440px' : '100px'}
-    >
+    <CardTodoForm onSubmit={handleSubmit}>
       <div>
         <CardHeader>
           <Title
@@ -78,12 +73,10 @@ export default function TodoForm({ onAddTodoList }: Props) {
           placeholder="Criar nota..."
           onChange={onChangeTextAreaNew}
           value={textAreaNew}
-          onClick={() => setHiddenText(!hiddenText)}
         ></TextAreaNew>
       </div>
       <FooterTodoForm>
-        <Button onClick={() => setHiddenText(!hiddenText)}>Publicar</Button>
-        <Image src={vectorX} alt="" />
+        <Button></Button>
       </FooterTodoForm>
     </CardTodoForm>
   );
