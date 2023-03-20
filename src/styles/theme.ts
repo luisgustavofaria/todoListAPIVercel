@@ -11,6 +11,6 @@ const theme = {
   ellipse10: '#CDCDCD',
   ellipse11: '#979797',
   ellipse12: '#A99A7C',
-}
+};
 
-export default theme
+export default theme;
