@@ -4,7 +4,10 @@
 # install dependencies
 npm install
 
-# start
+# start front-end
+npm run dev
+
+# start back-end
 npm run dev
 ```
 
