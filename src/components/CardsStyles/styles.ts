@@ -59,7 +59,7 @@ export const CardTodoList = styled.form<{ colorBack: string }>`
   position: relative;
 `;
 
-export const CardTodoForm = styled.form`
+export const CardTodoForm = styled.form<{ hiddenText: string }>`
   width: 100%;
   max-width: 390px;
   height: 100px;
@@ -71,7 +71,7 @@ export const CardTodoForm = styled.form`
   justify-content: space-between;
 
   :focus-within {
-    height: 440px;
+    height: ${({ hiddenText }) => hiddenText};
   }
 
   :focus-within textarea {
