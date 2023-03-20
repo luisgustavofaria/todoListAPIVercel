@@ -137,7 +137,9 @@ export default function Home() {
         <TodoForm onAddTodoList={addTodoList} />
         <ContainerList>
           <ContainerFavoriteOrNo>
-            <p>Favoritas</p>
+            {list.filter((item) => item.isFavorited).length > 0 && (
+              <p>Favoritas</p>
+            )}
             <Task>
               {list
                 .filter((item) => {
@@ -156,7 +158,9 @@ export default function Home() {
             </Task>
           </ContainerFavoriteOrNo>
           <ContainerFavoriteOrNo>
-            <p>Outras</p>
+            {list.filter((item) => !item.isFavorited).length > 0 && (
+              <p>Outras</p>
+            )}
             <Task>
               {list
                 .filter((item) => {
