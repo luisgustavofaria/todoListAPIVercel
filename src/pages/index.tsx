@@ -63,9 +63,19 @@ export default function Home() {
   }
 
   async function editColorById(todoListId: string, color: string) {
-    await axios.patch(`http://localhost:3333/todo/color?id=${todoListId}`, {
-      color,
-    });
+    const editColor = todoForm.find((el) => el.id === todoListId);
+    if (editColor) {
+      const colorEdited = {
+        ...editColor,
+        todo_id: editColor.id,
+        color,
+      };
+      const newTodoList = todoForm.map((el) =>
+        el.id === todoListId ? colorEdited : el
+      );
+      setTodoForm(newTodoList);
+      await axios.put('http://localhost:3333/todo/update-unique', colorEdited);
+    }
   }
 
   async function editTodoListById(
