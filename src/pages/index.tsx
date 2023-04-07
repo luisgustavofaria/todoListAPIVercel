@@ -40,16 +40,14 @@ export default function Home() {
     isFavorited: boolean
   ) {
     const data = {
-      id: crypto.randomUUID(),
       titleTodoList: titleNew,
       textAreaTodoList: textAreaNew,
       isFavorited,
       color: '#FFFFFF',
     };
 
-    setTodoForm((oldState) => [...oldState, data]);
-
-    await axios.post('http://localhost:3333/todo/create', data);
+    const todo = await axios.post('http://localhost:3333/todo/create', data);
+    setTodoForm((oldState) => [...oldState, todo.data]);
   }
 
   async function deleteTodoListById(todoListId: string) {
