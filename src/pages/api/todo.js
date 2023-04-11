@@ -3,18 +3,18 @@ import Joi from 'joi';
 
 import createHandler from '../../../lib/middlewares/nextConnect';
 import validation from '../../../lib/middlewares/validation';
-import { todoService } from '../../../modules/todo.service';
+import { createTodo } from '../../../modules/todo.service';
 
 const postSchema = Joi.object({
   titleTodoList: Joi.string().required().max(20),
   textAreaTodoList: Joi.string().required().min(5),
 });
 
-const todoList = createHandler();
+const handler = createHandler();
 
-todoList.post(validation({ body: postSchema }), async (req, res) => {
+handler.post(validation({ body: postSchema }), async (req, res) => {
   try {
-    const todo = await todoService(req.body);
+    const todo = await createTodo(req.body);
     res.status(201).json(todo);
   } catch (err) {
     console.error(err);
@@ -22,7 +22,7 @@ todoList.post(validation({ body: postSchema }), async (req, res) => {
   }
 });
 
-export default todoList;
+export default handler;
 
 // import mongoose from 'mongoose';
 // import connectDB from '../../../lib/mongoose';

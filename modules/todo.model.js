@@ -21,7 +21,7 @@ const TodoSchema = new mongoose.Schema({
   },
 });
 
-export default models.Todo || model('Todo', TodoSchema);
+export default mongoose.models.Todo || mongoose.model('Todo', TodoSchema);
 
 // import mongoose, { models, model } from 'mongoose';
 

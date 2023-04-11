@@ -1,6 +1,19 @@
 import Todo from './todo.model';
 
-export const todoService = async (body) => {
-  const dbTodo = await Todo.create(body);
-  return dbTodo;
+export const createTodo = async (body) => {
+  return await Todo.create({
+    titleTodoList: body.titleTodoList,
+    textAreaTodoList: body.textAreaTodoList,
+    isFavorited: body.isFavorited,
+    color: body.color,
+  });
+};
+
+export const getTodo = async (body) => {
+  return await Todo.find({
+    titleTodoList: body.titleTodoList,
+    textAreaTodoList: body.textAreaTodoList,
+    isFavorited: body.isFavorited,
+    color: body.color,
+  });
 };
