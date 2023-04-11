@@ -6,8 +6,8 @@ import validation from '../../../lib/middlewares/validation';
 import { todoService } from '../../../modules/todo.service';
 
 const postSchema = Joi.object({
-  title: Joi.string().required().max(20),
-  description: Joi.string().required().min(5),
+  titleTodoList: Joi.string().required().max(20),
+  textAreaTodoList: Joi.string().required().min(5),
 });
 
 const todoList = createHandler();
