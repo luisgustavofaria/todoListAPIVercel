@@ -12,9 +12,14 @@ const postSchema = Joi.object({
 
 const todoList = createHandler();
 
-todoList.post(validation({ body: postSchema }), (req, res) => {
-  todoService(req.body);
-  res.status(200).json({ teste: 'ok' });
+todoList.post(validation({ body: postSchema }), async (req, res) => {
+  try {
+    const todo = await todoService(req.body);
+    res.status(201).json(todo);
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 });
 
 export default todoList;
