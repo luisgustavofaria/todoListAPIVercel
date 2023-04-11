@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAtomValue } from 'jotai';
+import axios from 'axios';
 
 import {
   ContainerFavoriteOrNo,
@@ -11,7 +12,6 @@ import Header from '@/components/Header';
 import TodoForm from '@/components/TodoForm';
 import TodoList from '@/components/TodoList';
 import { searchAtom } from '../components/Header/Search';
-import axios from 'axios';
 
 export interface ITodoList {
   id: string;
@@ -24,13 +24,13 @@ export interface ITodoList {
 export default function Home() {
   const [todoForm, setTodoForm] = useState<ITodoList[]>([]);
 
-  async function getTodo() {
-    const response = await axios.get('http://localhost:3333/todo/list-many');
-
-    setTodoForm(response.data);
-  }
-
   useEffect(() => {
+    async function getTodo() {
+      const response = await axios.get(
+        'http://localhost:3000/api/todo/list-many'
+      );
+      setTodoForm(response.data);
+    }
     getTodo();
   }, []);
 
@@ -46,7 +46,10 @@ export default function Home() {
       color: '#FFFFFF',
     };
 
-    const todo = await axios.post('http://localhost:3333/todo/create', data);
+    const todo = await axios.post(
+      `http://localhost:3000/api/todo/create`,
+      data
+    );
     setTodoForm((oldState) => [...oldState, todo.data]);
   }
 
@@ -55,7 +58,7 @@ export default function Home() {
       (todoList) => todoList.id !== todoListId
     );
     setTodoForm(newTodoForm);
-    await axios.delete('http://localhost:3333/todo/delete-unique', {
+    await axios.delete('http://localhost:3000/api/todo/delete-unique', {
       params: { todo_id: todoListId },
     });
   }
@@ -72,7 +75,7 @@ export default function Home() {
         el.id === todoListId ? colorEdited : el
       );
       setTodoForm(newTodoList);
-      await axios.put('http://localhost:3333/todo/update-unique', colorEdited);
+      await axios.put('http://localhost:3000/api/update-unique', colorEdited);
     }
   }
 
@@ -95,7 +98,7 @@ export default function Home() {
       );
       setTodoForm(newTodoList);
       await axios.put(
-        'http://localhost:3333/todo/update-unique',
+        'http://localhost:3000/api/todo/update-unique',
         todoListEdited
       );
     }
@@ -105,7 +108,7 @@ export default function Home() {
     const newTodoForm = todoForm.map((todoList) => {
       if (todoList.id === id) {
         axios
-          .put('http://localhost:3333/todo/update-unique', {
+          .put('http://localhost:3000/api/todo', {
             todo_id: todoList.id,
             isFavorited: !todoList.isFavorited,
           })

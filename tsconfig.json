@@ -25,7 +25,9 @@
     "src/components/Todo/styles.js",
     "src/components/Todo/index.jsx",
     "src/components/Todo/Post/styles.js",
-    "src/components/TodoForm/index.tsx"
+    "src/components/TodoForm/index.tsx",
+    "lib/middlewares/mongoose.js",
+    "modules/todo.model.js"
   ],
   "exclude": ["node_modules"]
 }
