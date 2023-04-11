@@ -1,6 +1,7 @@
 import Todo from './todo.model';
 
-export const todoService = async (body) => {
-  const dbTodo = await Todo.create(body);
-  return dbTodo;
+export const todoService = (body) => {
+  console.log('lista de tarefa');
+  console.log(body);
+  return true;
 };
