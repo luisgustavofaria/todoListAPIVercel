@@ -26,9 +26,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getTodo() {
-      const response = await axios.get(
-        'http://localhost:3000/api/todo/list-many'
-      );
+      const response = await axios.get('/api/todo');
       setTodoForm(response.data);
     }
     getTodo();
