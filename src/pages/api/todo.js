@@ -2,29 +2,24 @@ import connect from 'next-connect';
 import Joi from 'joi';
 
 import createHandler from '../../../lib/middlewares/nextConnect';
-import validation from '../../../lib/middlewares/validation';
-import { createTodo, getTodos } from '../../../modules/todo.service';
 
-const todoSchema = Joi.object({
-  titleTodoList: Joi.string().required().max(20),
-  textAreaTodoList: Joi.string().required().min(5),
-});
+import { createTodo, getTodos } from '../../../modules/todo.service';
 
 const handler = createHandler();
 
-handler.post(validation({ body: todoSchema }), async (req, res) => {
+handler.get(async (req, res) => {
   try {
-    const newTodo = await createTodo(req.body);
-    res.status(201).send(newTodo);
+    const todolist = await getTodos();
+    res.status(200).json(todolist);
   } catch (err) {
     return res.status(500).send(err.message);
   }
 });
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   try {
-    const todos = await getTodos();
-    res.status(200).json(todos);
+    const newTodo = await createTodo(req.body);
+    res.status(201).send(newTodo);
   } catch (err) {
     return res.status(500).send(err.message);
   }

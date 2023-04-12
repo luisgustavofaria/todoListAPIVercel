@@ -1,5 +1,9 @@
 import Todo from './todo.model';
 
+export const getTodos = async () => {
+  return await Todo.find();
+};
+
 export const createTodo = async (body) => {
   return await Todo.create({
     titleTodoList: body.titleTodoList,
@@ -7,8 +11,4 @@ export const createTodo = async (body) => {
     isFavorited: body.isFavorited,
     color: body.color,
   });
-};
-
-export const getTodos = async () => {
-  return await Todo.find();
 };

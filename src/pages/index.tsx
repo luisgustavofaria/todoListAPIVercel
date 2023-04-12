@@ -44,10 +44,7 @@ export default function Home() {
       color: '#FFFFFF',
     };
 
-    const todo = await axios.post(
-      `http://localhost:3000/api/todo/create`,
-      data
-    );
+    const todo = await axios.post('/api/todo', data);
     setTodoForm((oldState) => [...oldState, todo.data]);
   }
 
