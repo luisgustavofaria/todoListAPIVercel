@@ -53,8 +53,8 @@ export default function Home() {
       (todoList) => todoList.id !== todoListId
     );
     setTodoForm(newTodoForm);
-    await axios.delete('http://localhost:3000/api/todo/delete-unique', {
-      params: { todo_id: todoListId },
+    await axios.delete('/api/todo', {
+      params: { _id: todoListId },
     });
   }
 
@@ -70,7 +70,7 @@ export default function Home() {
         el.id === todoListId ? colorEdited : el
       );
       setTodoForm(newTodoList);
-      await axios.put('http://localhost:3000/api/update-unique', colorEdited);
+      await axios.put('/api/todo', colorEdited);
     }
   }
 
@@ -92,10 +92,7 @@ export default function Home() {
         el.id === todoListId ? todoListEdited : el
       );
       setTodoForm(newTodoList);
-      await axios.put(
-        'http://localhost:3000/api/todo/update-unique',
-        todoListEdited
-      );
+      await axios.put('/api/todo', todoListEdited);
     }
   }
 
@@ -103,7 +100,7 @@ export default function Home() {
     const newTodoForm = todoForm.map((todoList) => {
       if (todoList.id === id) {
         axios
-          .put('http://localhost:3000/api/todo', {
+          .put('/api/todo', {
             todo_id: todoList.id,
             isFavorited: !todoList.isFavorited,
           })

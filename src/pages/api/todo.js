@@ -3,7 +3,11 @@ import Joi from 'joi';
 
 import createHandler from '../../../lib/middlewares/nextConnect';
 
-import { createTodo, getTodos } from '../../../modules/todo.service';
+import {
+  createTodo,
+  getTodos,
+  deleteTodo,
+} from '../../../modules/todo.service';
 
 const handler = createHandler();
 
@@ -20,6 +24,16 @@ handler.post(async (req, res) => {
   try {
     const newTodo = await createTodo(req.body);
     res.status(201).send(newTodo);
+  } catch (err) {
+    return res.status(500).send(err.message);
+  }
+});
+
+handler.delete(async (req, res) => {
+  try {
+    const deleteOneTodo = await deleteTodo(req.query.id);
+    if (deleteOneTodo) return res.status(200).send({ ok: true });
+    return res.status(400).send('post not found');
   } catch (err) {
     return res.status(500).send(err.message);
   }

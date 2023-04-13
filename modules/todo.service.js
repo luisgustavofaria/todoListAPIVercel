@@ -12,3 +12,9 @@ export const createTodo = async (body) => {
     color: body.color,
   });
 };
+
+export const deleteTodo = async (id) => {
+  return await Todo.findOneAndDelete({
+    _id: id,
+  });
+};
