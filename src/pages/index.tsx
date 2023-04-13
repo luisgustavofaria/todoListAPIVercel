@@ -54,7 +54,7 @@ export default function Home() {
     );
     setTodoForm(newTodoForm);
     await axios.delete('/api/todo', {
-      params: { _id: todoListId },
+      params: { id: todoListId },
     });
   }
 

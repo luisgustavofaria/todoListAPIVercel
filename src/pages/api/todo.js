@@ -2,12 +2,16 @@ import connect from 'next-connect';
 import Joi from 'joi';
 
 import createHandler from '../../../lib/middlewares/nextConnect';
-
+import validation from '../../../lib/middlewares/validation';
 import {
   createTodo,
   getTodos,
   deleteTodo,
 } from '../../../modules/todo.service';
+import {
+  createTodoSchema,
+  deleteTodoSchema,
+} from '../../../modules/todo.schema';
 
 const handler = createHandler();
 
@@ -20,7 +24,7 @@ handler.get(async (req, res) => {
   }
 });
 
-handler.post(async (req, res) => {
+handler.post(validation({ body: createTodoSchema }), async (req, res) => {
   try {
     const newTodo = await createTodo(req.body);
     res.status(201).send(newTodo);
@@ -29,9 +33,9 @@ handler.post(async (req, res) => {
   }
 });
 
-handler.delete(async (req, res) => {
+handler.delete(validation({ body: deleteTodoSchema }), async (req, res) => {
   try {
-    const deleteOneTodo = await deleteTodo(req.query.id);
+    const deleteOneTodo = await deleteTodo(req.body.id);
     if (deleteOneTodo) return res.status(200).send({ ok: true });
     return res.status(400).send('post not found');
   } catch (err) {
