@@ -33,9 +33,10 @@ handler.post(validation({ body: createTodoSchema }), async (req, res) => {
   }
 });
 
-handler.delete(validation({ body: deleteTodoSchema }), async (req, res) => {
+handler.delete(async (req, res) => {
   try {
-    const deleteOneTodo = await deleteTodo(req.body.id);
+    console.log(req.body);
+    const deleteOneTodo = await deleteTodo(req.body._id);
     if (deleteOneTodo) return res.status(200).send({ ok: true });
     return res.status(400).send('post not found');
   } catch (err) {

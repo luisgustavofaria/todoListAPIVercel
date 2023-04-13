@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 import joiObjectid from 'joi-objectid';
-Joi.objectid = joiObjectid(Joi);
+Joi.objectId = joiObjectid(Joi);
 
 export const createTodoSchema = Joi.object({
   titleTodoList: Joi.string().required().max(20),
@@ -11,5 +11,5 @@ export const createTodoSchema = Joi.object({
 });
 
 export const deleteTodoSchema = Joi.object({
-  id: Joi.objectid().required(),
+  id: Joi.objectId().required(),
 });

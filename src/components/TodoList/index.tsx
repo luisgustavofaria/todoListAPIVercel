@@ -69,7 +69,7 @@ export default function TodoList({
       setDisable(!disable);
       return;
     }
-    onEdit(task.id, title, textArea, backGroundColor);
+    onEdit(task._id, title, textArea, backGroundColor);
     setDisable(!disable);
   }
 
@@ -81,7 +81,7 @@ export default function TodoList({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div onClick={() => onChecked(task.id)}>
+        <div onClick={() => onChecked(task._id)}>
           <Image
             src={task.isFavorited ? favoriteCheked : favoriteNoCheked}
             alt=""
@@ -107,7 +107,7 @@ export default function TodoList({
             />
           </button>
         </div>
-        <button onClick={() => onDelete(task.id)}>
+        <button onClick={() => onDelete(task._id)}>
           <Image src={vectorX} alt="" />
         </button>
       </FooterTodoList>
@@ -119,7 +119,7 @@ export default function TodoList({
                 key={color}
                 onClick={() => {
                   setBackGroundColor(color);
-                  onColorEdit(task.id, color);
+                  onColorEdit(task._id, color);
                 }}
                 style={{ backgroundColor: color }}
               />

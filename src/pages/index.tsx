@@ -14,7 +14,7 @@ import TodoList from '@/components/TodoList';
 import { searchAtom } from '../components/Header/Search';
 
 export interface ITodoList {
-  id: string;
+  _id: string;
   titleTodoList: string;
   textAreaTodoList: string;
   isFavorited: boolean;
@@ -48,26 +48,22 @@ export default function Home() {
     setTodoForm((oldState) => [...oldState, todo.data]);
   }
 
-  async function deleteTodoListById(todoListId: string) {
-    const newTodoForm = todoForm.filter(
-      (todoList) => todoList.id !== todoListId
-    );
-    setTodoForm(newTodoForm);
-    await axios.delete('/api/todo', {
-      params: { id: todoListId },
-    });
+  async function deleteTodoListById(data: any) {
+    console.log(data._id);
+
+    await axios.delete('/api/todo', data._id);
   }
 
   async function editColorById(todoListId: string, color: string) {
-    const editColor = todoForm.find((el) => el.id === todoListId);
+    const editColor = todoForm.find((el) => el._id === todoListId);
     if (editColor) {
       const colorEdited = {
         ...editColor,
-        todo_id: editColor.id,
+        todo_id: editColor._id,
         color,
       };
       const newTodoList = todoForm.map((el) =>
-        el.id === todoListId ? colorEdited : el
+        el._id === todoListId ? colorEdited : el
       );
       setTodoForm(newTodoList);
       await axios.put('/api/todo', colorEdited);
@@ -79,17 +75,17 @@ export default function Home() {
     title: string,
     textarea: string
   ) {
-    const todoListToEdit = todoForm.find((el) => el.id === todoListId);
+    const todoListToEdit = todoForm.find((el) => el._id === todoListId);
 
     if (todoListToEdit) {
       const todoListEdited = {
         ...todoListToEdit,
-        todo_id: todoListToEdit.id,
+        todo_id: todoListToEdit._id,
         titleTodoList: title,
         textAreaTodoList: textarea,
       };
       const newTodoList = todoForm.map((el) =>
-        el.id === todoListId ? todoListEdited : el
+        el._id === todoListId ? todoListEdited : el
       );
       setTodoForm(newTodoList);
       await axios.put('/api/todo', todoListEdited);
@@ -98,10 +94,10 @@ export default function Home() {
 
   async function toggleFavorited(id: string) {
     const newTodoForm = todoForm.map((todoList) => {
-      if (todoList.id === id) {
+      if (todoList._id === id) {
         axios
           .put('/api/todo', {
-            todo_id: todoList.id,
+            todo_id: todoList._id,
             isFavorited: !todoList.isFavorited,
           })
           .then((r) => r);
@@ -150,9 +146,9 @@ export default function Home() {
                 })
                 .map((task) => (
                   <TodoList
-                    key={task.id}
+                    key={task._id}
                     task={task}
-                    onDelete={deleteTodoListById}
+                    onDelete={() => deleteTodoListById(task)}
                     onChecked={toggleFavorited}
                     onEdit={editTodoListById}
                     onColorEdit={editColorById}
@@ -171,7 +167,7 @@ export default function Home() {
                 })
                 .map((task) => (
                   <TodoList
-                    key={task.id}
+                    key={task._id}
                     task={task}
                     onDelete={deleteTodoListById}
                     onChecked={toggleFavorited}
