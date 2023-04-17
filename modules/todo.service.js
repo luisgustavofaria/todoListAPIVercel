@@ -18,3 +18,19 @@ export const deleteTodo = async (id) => {
     id,
   });
 };
+
+export const updateTodo = async (
+  id,
+  titleTodoList,
+  textAreaTodoList,
+  isFavorited,
+  color
+) => {
+  return await Todo.findOneAndUpdate({
+    id,
+    titleTodoList,
+    textAreaTodoList,
+    isFavorited,
+    color,
+  });
+};

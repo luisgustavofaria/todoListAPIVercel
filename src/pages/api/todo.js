@@ -7,6 +7,7 @@ import {
   createTodo,
   getTodos,
   deleteTodo,
+  updateTodo,
 } from '../../../modules/todo.service';
 import {
   createTodoSchema,
@@ -42,6 +43,19 @@ handler.delete(async (req, res) => {
   } catch (err) {
     return res.status(500).send(err.message);
   }
+});
+
+handler.put(async (req, res) => {
+  console.log(req.body);
+  const updateOneTodo = await updateTodo(
+    req.body._id,
+    req.body.titleTodoList,
+    req.body.textAreaTodoList,
+    req.body.isFavorited,
+    req.body.color
+  );
+  if (updateOneTodo) return res.status(200).send({ ok: true });
+  return res.status(400).send('post not found');
 });
 
 export default handler;
