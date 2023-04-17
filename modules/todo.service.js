@@ -14,8 +14,7 @@ export const createTodo = async (body) => {
 };
 
 export const deleteTodo = async (id) => {
-  console.log(id);
   return await Todo.deleteOne({
-    _id: id,
+    id,
   });
 };

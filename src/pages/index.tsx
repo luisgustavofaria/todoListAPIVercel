@@ -48,11 +48,19 @@ export default function Home() {
     setTodoForm((oldState) => [...oldState, todo.data]);
   }
 
-  async function deleteTodoListById(data: any) {
-    console.log(data._id);
-
-    await axios.delete('/api/todo', data._id);
+  async function deleteTodoListById(todoListId: any) {
+    const newTodoForm = todoForm.filter(
+      (todoList) => todoList._id !== todoListId
+    );
+    setTodoForm(newTodoForm);
+    await axios.delete('/api/todo', todoListId);
   }
+
+  // async function deleteTodoListById(data: any) {
+  //   console.log(data._id);
+
+  //   await axios.delete('/api/todo', data._id);
+  // }
 
   async function editColorById(todoListId: string, color: string) {
     const editColor = todoForm.find((el) => el._id === todoListId);
