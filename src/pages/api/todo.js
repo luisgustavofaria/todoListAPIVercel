@@ -21,7 +21,7 @@ handler.get(async (req, res) => {
   }
 });
 
-handler.post(validation({ body: createTodoSchema }), async (req, res) => {
+handler.post(async (req, res) => {
   try {
     const { titleTodoList, textAreaTodoList, isFavorited, color } = req.body;
     const newTodo = await Todo.create({
@@ -48,15 +48,16 @@ handler.delete(async (req, res) => {
 
 handler.put(async (req, res) => {
   console.log(req.body);
-  const updateOneTodo = await Todo.findOneAndUpdate({
-    id,
-    titleTodoList,
-    textAreaTodoList,
-    isFavorited,
-    color,
-  });
-  if (updateOneTodo) return res.status(200).send({ ok: true });
-  return res.status(400).send('post not found');
+  const updateOneTodo = await Todo.findOneAndUpdate(
+    { _id: req.body.todo_id }, // use the _id field to identify the todo list to update
+    {
+      titleTodoList: req.body.titleTodoList,
+      textAreaTodoList: req.body.textAreaTodoList,
+      isFavorited: req.body.isFavorited,
+      color: req.body.color,
+    },
+    { new: true } // return the updated document
+  );
 });
 
 export default handler;

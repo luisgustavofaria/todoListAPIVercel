@@ -4,8 +4,8 @@ import joiObjectid from 'joi-objectid';
 Joi.objectId = joiObjectid(Joi);
 
 export const createTodoSchema = Joi.object({
-  titleTodoList: Joi.string().required().max(20),
-  textAreaTodoList: Joi.string().required().min(5),
+  titleTodoList: Joi.string().allow(''),
+  textAreaTodoList: Joi.string().allow(''),
   isFavorited: Joi.boolean().required(),
   color: Joi.string().required(),
 });
