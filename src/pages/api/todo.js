@@ -3,12 +3,7 @@ import Joi from 'joi';
 
 import createHandler from '../../../lib/middlewares/nextConnect';
 import validation from '../../../lib/middlewares/validation';
-import {
-  createTodo,
-  getTodos,
-  deleteTodo,
-  updateTodo,
-} from '../../../modules/todo.service';
+
 import {
   createTodoSchema,
   deleteTodoSchema,
