@@ -13,12 +13,13 @@ import {
   createTodoSchema,
   deleteTodoSchema,
 } from '../../../modules/todo.schema';
+import Todo from '../../../modules/todo.model';
 
 const handler = createHandler();
 
 handler.get(async (req, res) => {
   try {
-    const todolist = await getTodos();
+    const todolist = await Todo.find();
     res.status(200).json(todolist);
   } catch (err) {
     return res.status(500).send(err.message);
@@ -27,7 +28,13 @@ handler.get(async (req, res) => {
 
 handler.post(validation({ body: createTodoSchema }), async (req, res) => {
   try {
-    const newTodo = await createTodo(req.body);
+    const { titleTodoList, textAreaTodoList, isFavorited, color } = req.body;
+    const newTodo = await Todo.create({
+      titleTodoList,
+      textAreaTodoList,
+      isFavorited,
+      color,
+    });
     res.status(201).send(newTodo);
   } catch (err) {
     return res.status(500).send(err.message);
@@ -36,8 +43,7 @@ handler.post(validation({ body: createTodoSchema }), async (req, res) => {
 
 handler.delete(async (req, res) => {
   try {
-    console.log(req.body);
-    const deleteOneTodo = await deleteTodo(req.body._id);
+    const deleteOneTodo = await Todo.deleteOne(req.body.id);
     if (deleteOneTodo) return res.status(200).send({ ok: true });
     return res.status(400).send('post not found');
   } catch (err) {
@@ -47,13 +53,13 @@ handler.delete(async (req, res) => {
 
 handler.put(async (req, res) => {
   console.log(req.body);
-  const updateOneTodo = await updateTodo(
-    req.body._id,
-    req.body.titleTodoList,
-    req.body.textAreaTodoList,
-    req.body.isFavorited,
-    req.body.color
-  );
+  const updateOneTodo = await Todo.findOneAndUpdate({
+    id,
+    titleTodoList,
+    textAreaTodoList,
+    isFavorited,
+    color,
+  });
   if (updateOneTodo) return res.status(200).send({ ok: true });
   return res.status(400).send('post not found');
 });
