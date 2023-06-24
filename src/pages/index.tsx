@@ -53,7 +53,9 @@ export default function Home() {
       (todoList) => todoList._id !== todoListId
     );
     setTodoForm(newTodoForm);
-    await axios.delete('/api/todo', todoListId);
+    await axios.delete('/api/todo', {
+      params: { todo_id: todoListId },
+    });
   }
 
   async function editColorById(todoListId: string, color: string) {
