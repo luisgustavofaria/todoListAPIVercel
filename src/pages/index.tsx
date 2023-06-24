@@ -150,7 +150,7 @@ export default function Home() {
                   <TodoList
                     key={task._id}
                     task={task}
-                    onDelete={() => deleteTodoListById(task)}
+                    onDelete={deleteTodoListById}
                     onChecked={toggleFavorited}
                     onEdit={editTodoListById}
                     onColorEdit={editColorById}
