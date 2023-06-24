@@ -62,7 +62,7 @@ export const CardTodoList = styled.form<{ colorBack: string }>`
 export const CardTodoForm = styled.form`
   width: 100%;
   max-width: 390px;
-  height: 100px;
+  min-height: 100px;
   background-color: #ffffff;
   border-radius: 25px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
@@ -76,7 +76,7 @@ export const CardTodoForm = styled.form`
   }
 `;
 
-export const TextAreaTodoList = styled.textarea`
+export const TextAreaTodoList = styled.textarea<{ error?: boolean }>`
   width: 100%;
   height: 340px;
   padding: 14px 23px;
@@ -90,7 +90,7 @@ export const TextAreaTodoList = styled.textarea`
     outline: none;
   }
 `;
-export const TextAreaNew = styled.input`
+export const TextAreaNew = styled.input<{ error?: boolean }>`
   width: 100%;
   height: 50px;
   padding: 14px 23px;
@@ -137,7 +137,7 @@ export const CardHeader = styled.header`
   }
 `;
 
-export const Title = styled.input`
+export const Title = styled.input<{ error?: boolean }>`
   width: 90%;
   height: 30px;
   border: none;
@@ -155,6 +155,11 @@ export const Title = styled.input`
     font-size: 14.2px;
     font-weight: 700;
   }
+`;
+
+export const ErrorText = styled.span`
+  color: red;
+  margin-left: 20px;
 `;
 
 export const Container = styled.div`

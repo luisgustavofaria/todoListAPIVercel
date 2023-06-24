@@ -1,13 +1,7 @@
-import connect from 'next-connect';
-import Joi from 'joi';
-
 import createHandler from '../../../lib/middlewares/nextConnect';
 import validation from '../../../lib/middlewares/validation';
 
-import {
-  createTodoSchema,
-  deleteTodoSchema,
-} from '../../../modules/todo.schema';
+import { createTodoSchema } from '../../../modules/todo.schema';
 import Todo from '../../../modules/todo.model';
 
 const handler = createHandler();
@@ -21,7 +15,7 @@ handler.get(async (req, res) => {
   }
 });
 
-handler.post(async (req, res) => {
+handler.post(validation({ body: createTodoSchema }), async (req, res) => {
   try {
     const { titleTodoList, textAreaTodoList, isFavorited, color } = req.body;
     const newTodo = await Todo.create({

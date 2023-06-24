@@ -8,6 +8,7 @@ import {
   TextAreaNew,
   Button,
   FooterTodoForm,
+  ErrorText,
 } from '../CardsStyles/styles';
 import favoriteNoCheked from '../../../public/favoriteNoCheked.svg';
 import favoriteCheked from '../../../public/favoriteCheked.svg';
@@ -24,9 +25,22 @@ export default function TodoForm({ onAddTodoList }: Props) {
   const [titleNew, setTitleNew] = useState('');
   const [textAreaNew, setTextAreaNew] = useState('');
   const [isFavorited, setisFavorited] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [textAreaError, setTextAreaError] = useState(false);
 
   function handleSubmit(event: React.SyntheticEvent<EventTarget>) {
     event.preventDefault();
+    if (titleNew.trim() === '') {
+      setTitleError(true);
+      return;
+    }
+
+    if (textAreaNew.trim() === '') {
+      setTextAreaError(true);
+      return;
+    }
+    setTitleError(false);
+    setTextAreaError(false);
     onAddTodoList(titleNew, textAreaNew, isFavorited);
     setTitleNew('');
     setTextAreaNew('');
@@ -38,6 +52,7 @@ export default function TodoForm({ onAddTodoList }: Props) {
     >
   ) {
     setTitleNew(event.target.value);
+    setTitleError(false); // Limpar o erro quando o usuário começar a digitar
   }
 
   function onChangeTextAreaNew(
@@ -46,6 +61,7 @@ export default function TodoForm({ onAddTodoList }: Props) {
     >
   ) {
     setTextAreaNew(event.target.value);
+    setTextAreaError(false); // Limpar o erro quando o usuário começar a digitar
   }
 
   const onChangeChecked = () => {
@@ -60,7 +76,9 @@ export default function TodoForm({ onAddTodoList }: Props) {
             onChange={onChangeTitleNew}
             value={titleNew}
             placeholder="Titulo"
+            error={titleError}
           />
+
           <div onClick={onChangeChecked}>
             <Image
               src={isFavorited ? favoriteCheked : favoriteNoCheked}
@@ -68,12 +86,19 @@ export default function TodoForm({ onAddTodoList }: Props) {
             />
           </div>
         </CardHeader>
+        <div>
+          {titleError && <ErrorText>Favor escrever um título</ErrorText>}
+        </div>
         <TextAreaNew
           name="todoList"
           placeholder="Criar nota..."
           onChange={onChangeTextAreaNew}
           value={textAreaNew}
+          error={textAreaError}
         ></TextAreaNew>
+        <div>
+          {textAreaError && <ErrorText>Favor criar uma nota</ErrorText>}
+        </div>
       </div>
       <FooterTodoForm>
         <Button></Button>
