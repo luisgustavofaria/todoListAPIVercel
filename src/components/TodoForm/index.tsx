@@ -24,23 +24,21 @@ interface Props {
 export default function TodoForm({ onAddTodoList }: Props) {
   const [titleNew, setTitleNew] = useState('');
   const [textAreaNew, setTextAreaNew] = useState('');
-  const [isFavorited, setisFavorited] = useState(false);
-  const [titleError, setTitleError] = useState(false);
-  const [textAreaError, setTextAreaError] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [inputError, setInputError] = useState(false);
 
   function handleSubmit(event: React.SyntheticEvent<EventTarget>) {
     event.preventDefault();
     if (titleNew.trim() === '') {
-      setTitleError(true);
+      setInputError(true);
       return;
     }
 
     if (textAreaNew.trim() === '') {
-      setTextAreaError(true);
+      setInputError(true);
       return;
     }
-    setTitleError(false);
-    setTextAreaError(false);
+    setInputError(false);
     onAddTodoList(titleNew, textAreaNew, isFavorited);
     setTitleNew('');
     setTextAreaNew('');
@@ -52,7 +50,7 @@ export default function TodoForm({ onAddTodoList }: Props) {
     >
   ) {
     setTitleNew(event.target.value);
-    setTitleError(false); // Limpar o erro quando o usuário começar a digitar
+    setInputError(false); // Limpar o erro quando o usuário começar a digitar
   }
 
   function onChangeTextAreaNew(
@@ -61,11 +59,11 @@ export default function TodoForm({ onAddTodoList }: Props) {
     >
   ) {
     setTextAreaNew(event.target.value);
-    setTextAreaError(false); // Limpar o erro quando o usuário começar a digitar
+    setInputError(false); // Limpar o erro quando o usuário começar a digitar
   }
 
   const onChangeChecked = () => {
-    setisFavorited((oldState) => !oldState);
+    setIsFavorited((oldState) => !oldState);
   };
 
   return (
@@ -76,7 +74,7 @@ export default function TodoForm({ onAddTodoList }: Props) {
             onChange={onChangeTitleNew}
             value={titleNew}
             placeholder="Titulo"
-            error={titleError}
+            error={inputError}
           />
 
           <div onClick={onChangeChecked}>
@@ -86,18 +84,18 @@ export default function TodoForm({ onAddTodoList }: Props) {
             />
           </div>
         </CardHeader>
-        <div>
-          {titleError && <ErrorText>Favor escrever um título</ErrorText>}
-        </div>
+
         <TextAreaNew
           name="todoList"
           placeholder="Criar nota..."
           onChange={onChangeTextAreaNew}
           value={textAreaNew}
-          error={textAreaError}
+          error={inputError}
         ></TextAreaNew>
         <div>
-          {textAreaError && <ErrorText>Favor criar uma nota</ErrorText>}
+          {inputError && (
+            <ErrorText>Favor, preencher o campo de titulo e texto</ErrorText>
+          )}
         </div>
       </div>
       <FooterTodoForm>

@@ -160,6 +160,8 @@ export const Title = styled.input<{ error?: boolean }>`
 export const ErrorText = styled.span`
   color: red;
   margin-left: 20px;
+  font-size: 12px;
+  font-weight: bold;
 `;
 
 export const Container = styled.div`
