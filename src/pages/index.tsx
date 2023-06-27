@@ -25,12 +25,13 @@ export default function Home() {
   const [todoForm, setTodoForm] = useState<ITodoList[]>([]);
 
   useEffect(() => {
-    async function getTodo() {
-      const response = await axios.get('/api/todo');
-      setTodoForm(response.data);
-    }
     getTodo();
   }, []);
+
+  async function getTodo() {
+    const response = await axios.get('/api/todo');
+    setTodoForm(response.data);
+  }
 
   async function addTodoList(
     titleNew: string,
