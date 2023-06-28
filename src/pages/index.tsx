@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useAtomValue } from 'jotai';
 import axios from 'axios';
 
+import InfiniteScroll from '../components/InfinitiScroll';
 import {
   ContainerFavoriteOrNo,
   ContainerList,
@@ -22,7 +23,11 @@ export interface ITodoList {
 }
 
 export default function Home() {
-  const [todoForm, setTodoForm] = useState<ITodoList[]>([]);
+  const [notes, setNotes] = useState<ITodoList[]>([]);
+  const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [perPage, setPerPage] = useState(3);
+  const [allNotesLoaded, setAllNotesLoaded] = useState(false);
 
   useEffect(() => {
     getTodo();
@@ -30,8 +35,31 @@ export default function Home() {
 
   async function getTodo() {
     const response = await axios.get('/api/todo');
-    setTodoForm(response.data);
+    setNotes(response.data);
   }
+
+  const fetchMoreNotes = async () => {
+    if (isLoading || allNotesLoaded) {
+      return;
+    }
+
+    setIsLoading(true);
+    const newPage = page + 1;
+    const newPerPage = perPage;
+    const url = `/api/todo?page=${newPage}&perPage=${newPerPage}`;
+    const response = await axios.get(url);
+    const moreNotes = response.data;
+
+    if (moreNotes.length === 0) {
+      setAllNotesLoaded(true);
+    } else {
+      setPage(newPage);
+      setPerPage(newPerPage);
+      setNotes((prevNotes) => [...prevNotes, ...moreNotes]);
+    }
+
+    setIsLoading(false);
+  };
 
   async function addTodoList(
     titleNew: string,
@@ -46,31 +74,29 @@ export default function Home() {
     };
 
     const todo = await axios.post('/api/todo', data);
-    setTodoForm((oldState) => [...oldState, todo.data]);
+    setNotes((oldState) => [...oldState, todo.data]);
   }
 
   async function deleteTodoListById(todoListId: any) {
-    const newTodoForm = todoForm.filter(
-      (todoList) => todoList._id !== todoListId
-    );
-    setTodoForm(newTodoForm);
+    const newTodoForm = notes.filter((todoList) => todoList._id !== todoListId);
+    setNotes(newTodoForm);
     await axios.delete('/api/todo', {
       params: { todo_id: todoListId },
     });
   }
 
   async function editColorById(todoListId: string, color: string) {
-    const editColor = todoForm.find((el) => el._id === todoListId);
+    const editColor = notes.find((el) => el._id === todoListId);
     if (editColor) {
       const colorEdited = {
         ...editColor,
         todo_id: editColor._id,
         color,
       };
-      const newTodoList = todoForm.map((el) =>
+      const newTodoList = notes.map((el) =>
         el._id === todoListId ? colorEdited : el
       );
-      setTodoForm(newTodoList);
+      setNotes(newTodoList);
       await axios.put('/api/todo', colorEdited);
     }
   }
@@ -80,7 +106,7 @@ export default function Home() {
     title: string,
     textarea: string
   ) {
-    const todoListToEdit = todoForm.find((el) => el._id === todoListId);
+    const todoListToEdit = notes.find((el) => el._id === todoListId);
 
     if (todoListToEdit) {
       const todoListEdited = {
@@ -89,16 +115,16 @@ export default function Home() {
         titleTodoList: title,
         textAreaTodoList: textarea,
       };
-      const newTodoList = todoForm.map((el) =>
+      const newTodoList = notes.map((el) =>
         el._id === todoListId ? todoListEdited : el
       );
-      setTodoForm(newTodoList);
+      setNotes(newTodoList);
       await axios.put('/api/todo', todoListEdited);
     }
   }
 
   async function toggleFavorited(id: string) {
-    const newTodoForm = todoForm.map((todoList) => {
+    const newTodoForm = notes.map((todoList) => {
       if (todoList._id === id) {
         axios
           .put('/api/todo', {
@@ -113,13 +139,13 @@ export default function Home() {
       }
       return todoList;
     });
-    setTodoForm(newTodoForm);
+    setNotes(newTodoForm);
   }
 
   const searchValue = useAtomValue(searchAtom).toLocaleLowerCase();
 
   const list = useMemo(() => {
-    const filterTodos = todoForm.filter(
+    const filterTodos = notes.filter(
       (task) =>
         `${task.titleTodoList?.toLocaleLowerCase()}${task.textAreaTodoList?.toLocaleLowerCase()}`.includes(
           searchValue
@@ -132,7 +158,7 @@ export default function Home() {
     );
 
     return filterReorganize;
-  }, [searchValue, todoForm]);
+  }, [searchValue, notes]);
 
   return (
     <div>
@@ -182,6 +208,8 @@ export default function Home() {
                 ))}
             </Task>
           </ContainerFavoriteOrNo>
+          {isLoading && perPage !== null && <div>Carregando...</div>}
+          {!isLoading && <InfiniteScroll fetchMore={fetchMoreNotes} />}
         </ContainerList>
       </ContainerTodo>
     </div>
